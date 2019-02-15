@@ -719,7 +719,9 @@ export class AgmMap implements OnChanges, OnInit, OnDestroy {
     this._mapsWrapper.createLatLngBounds().then((bounds: any) => {
       this.bounds = bounds;
       for (let m of this.fitPoints) {
-        this.bounds.extend(m);
+        if (typeof m === 'object') {
+          this.bounds.extend(m);
+        }
       }
       this._mapsWrapper.fitBounds(this.bounds);
       this._mapsWrapper.panToBounds(this.bounds);

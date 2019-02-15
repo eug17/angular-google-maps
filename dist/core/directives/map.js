@@ -479,7 +479,9 @@ var AgmMap = (function () {
             _this.bounds = bounds;
             for (var _i = 0, _a = _this.fitPoints; _i < _a.length; _i++) {
                 var m = _a[_i];
-                _this.bounds.extend(m);
+                if (typeof m === 'object') {
+                    _this.bounds.extend(m);
+                }
             }
             _this._mapsWrapper.fitBounds(_this.bounds);
             _this._mapsWrapper.panToBounds(_this.bounds);

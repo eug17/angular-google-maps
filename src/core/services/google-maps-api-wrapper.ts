@@ -81,6 +81,13 @@ export class GoogleMapsAPIWrapper {
   }
 
   createPolygon(options: mapTypes.PolygonOptions): Promise<mapTypes.Polygon> {
+    if (options.paths && !Array.isArray(options.paths)) {
+      try {
+        options.paths = JSON.parse(options.paths);
+      } catch (e) {
+        options.paths = [];
+      }
+    }
     return this.getNativeMap().then((map: mapTypes.GoogleMap) => {
       let polygon = new google.maps.Polygon(options);
       polygon.setMap(map);
@@ -108,7 +115,7 @@ export class GoogleMapsAPIWrapper {
         drawingControlOptions: {
           position:
             google.maps.ControlPosition[
-              mapTypes.ControlPosition[controlPosition]
+            mapTypes.ControlPosition[controlPosition]
             ],
           drawingModes: drawingModes
         },
@@ -145,7 +152,7 @@ export class GoogleMapsAPIWrapper {
           drawingControlOptions: {
             position:
               google.maps.ControlPosition[
-                mapTypes.ControlPosition[controlPosition]
+              mapTypes.ControlPosition[controlPosition]
               ],
             drawingModes: drawingModes
           }

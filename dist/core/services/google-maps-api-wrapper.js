@@ -61,6 +61,14 @@ var GoogleMapsAPIWrapper = (function () {
         });
     };
     GoogleMapsAPIWrapper.prototype.createPolygon = function (options) {
+        if (options.paths && !Array.isArray(options.paths)) {
+            try {
+                options.paths = JSON.parse(options.paths);
+            }
+            catch (e) {
+                options.paths = [];
+            }
+        }
         return this.getNativeMap().then(function (map) {
             var polygon = new google.maps.Polygon(options);
             polygon.setMap(map);
