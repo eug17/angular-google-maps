@@ -1,5 +1,5 @@
 import { NgZone } from "@angular/core";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import { AgmPolygon } from "../../directives/polygon";
 import { GoogleMapsAPIWrapper } from "../google-maps-api-wrapper";
 import { Polygon } from "../google-maps-types";

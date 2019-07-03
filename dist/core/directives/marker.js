@@ -1,3 +1,12 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 import { Directive, EventEmitter, ContentChildren, QueryList, Input, Output } from '@angular/core';
 import { MarkerManager } from '../services/managers/marker-manager';
 import { AgmInfoWindow } from './info-window';
@@ -25,7 +34,7 @@ var markerId = 0;
  * })
  * ```
  */
-var AgmMarker = (function () {
+var AgmMarker = /** @class */ (function () {
     function AgmMarker(_markerManager) {
         this._markerManager = _markerManager;
         /**
@@ -162,33 +171,73 @@ var AgmMarker = (function () {
         // unsubscribe all registered observable subscriptions
         this._observableSubscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmMarker.prototype, "latitude", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmMarker.prototype, "longitude", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmMarker.prototype, "title", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmMarker.prototype, "label", void 0);
+    __decorate([
+        Input('markerDraggable'),
+        __metadata("design:type", Boolean)
+    ], AgmMarker.prototype, "draggable", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmMarker.prototype, "iconUrl", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMarker.prototype, "visible", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMarker.prototype, "openInfoWindow", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmMarker.prototype, "opacity", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmMarker.prototype, "zIndex", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMarker.prototype, "markerClick", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMarker.prototype, "dragEnd", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMarker.prototype, "mouseOver", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMarker.prototype, "mouseOut", void 0);
+    __decorate([
+        ContentChildren(AgmInfoWindow),
+        __metadata("design:type", QueryList)
+    ], AgmMarker.prototype, "infoWindow", void 0);
+    AgmMarker = __decorate([
+        Directive({
+            selector: 'agm-marker'
+        }),
+        __metadata("design:paramtypes", [MarkerManager])
+    ], AgmMarker);
     return AgmMarker;
 }());
 export { AgmMarker };
-AgmMarker.decorators = [
-    { type: Directive, args: [{
-                selector: 'agm-marker'
-            },] },
-];
-/** @nocollapse */
-AgmMarker.ctorParameters = function () { return [
-    { type: MarkerManager, },
-]; };
-AgmMarker.propDecorators = {
-    'latitude': [{ type: Input },],
-    'longitude': [{ type: Input },],
-    'title': [{ type: Input },],
-    'label': [{ type: Input },],
-    'draggable': [{ type: Input, args: ['markerDraggable',] },],
-    'iconUrl': [{ type: Input },],
-    'visible': [{ type: Input },],
-    'openInfoWindow': [{ type: Input },],
-    'opacity': [{ type: Input },],
-    'zIndex': [{ type: Input },],
-    'markerClick': [{ type: Output },],
-    'dragEnd': [{ type: Output },],
-    'mouseOver': [{ type: Output },],
-    'mouseOut': [{ type: Output },],
-    'infoWindow': [{ type: ContentChildren, args: [AgmInfoWindow,] },],
-};
 //# sourceMappingURL=marker.js.map

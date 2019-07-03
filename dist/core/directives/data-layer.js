@@ -1,3 +1,12 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 import { Directive, EventEmitter, Input, Output } from '@angular/core';
 import { DataLayerManager } from './../services/managers/data-layer-manager';
 var layerId = 0;
@@ -191,7 +200,7 @@ var layerId = 0;
  * }
  * ```
  */
-var AgmDataLayer = (function () {
+var AgmDataLayer = /** @class */ (function () {
     function AgmDataLayer(_manager) {
         this._manager = _manager;
         this._addedToManager = false;
@@ -206,6 +215,7 @@ var AgmDataLayer = (function () {
          */
         this.geoJson = null;
     }
+    AgmDataLayer_1 = AgmDataLayer;
     AgmDataLayer.prototype.ngOnInit = function () {
         if (this._addedToManager) {
             return;
@@ -244,26 +254,31 @@ var AgmDataLayer = (function () {
             this._manager.updateGeoJson(this, geoJsonChange.currentValue);
         }
         var dataOptions = {};
-        var optionKeys = Object.keys(changes).filter(function (k) { return AgmDataLayer._dataOptionsAttributes.indexOf(k) !== -1; });
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmDataLayer_1._dataOptionsAttributes.indexOf(k) !== -1; });
         optionKeys.forEach(function (k) { return dataOptions[k] = changes[k].currentValue; });
         this._manager.setDataOptions(this, dataOptions);
     };
+    var AgmDataLayer_1;
+    AgmDataLayer._dataOptionsAttributes = ['style'];
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmDataLayer.prototype, "layerClick", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], AgmDataLayer.prototype, "geoJson", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Function)
+    ], AgmDataLayer.prototype, "style", void 0);
+    AgmDataLayer = AgmDataLayer_1 = __decorate([
+        Directive({
+            selector: 'agm-data-layer'
+        }),
+        __metadata("design:paramtypes", [DataLayerManager])
+    ], AgmDataLayer);
     return AgmDataLayer;
 }());
 export { AgmDataLayer };
-AgmDataLayer._dataOptionsAttributes = ['style'];
-AgmDataLayer.decorators = [
-    { type: Directive, args: [{
-                selector: 'agm-data-layer'
-            },] },
-];
-/** @nocollapse */
-AgmDataLayer.ctorParameters = function () { return [
-    { type: DataLayerManager, },
-]; };
-AgmDataLayer.propDecorators = {
-    'layerClick': [{ type: Output },],
-    'geoJson': [{ type: Input },],
-    'style': [{ type: Input },],
-};
 //# sourceMappingURL=data-layer.js.map

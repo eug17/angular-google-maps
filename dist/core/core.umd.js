@@ -1,8 +1,8 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs/Observable')) :
-	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', 'rxjs/Observable'], factory) :
-	(factory((global.ngmaps = global.ngmaps || {}, global.ngmaps.core = global.ngmaps.core || {}),global.ng.core,global.Rx));
-}(this, (function (exports,_angular_core,rxjs_Observable) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('@angular/core'), require('rxjs')) :
+	typeof define === 'function' && define.amd ? define(['exports', '@angular/core', 'rxjs'], factory) :
+	(factory((global.ngmaps = global.ngmaps || {}, global.ngmaps.core = global.ngmaps.core || {}),global.ng.core,global.rxjs));
+}(this, (function (exports,_angular_core,rxjs) { 'use strict';
 
 /**
  * Identifiers used to specify the placement of controls on the map. Controls are
@@ -52,22 +52,35 @@ var ZoomControlStyle;
     ZoomControlStyle[ZoomControlStyle["SMALL"] = 2] = "SMALL";
 })(ZoomControlStyle || (ZoomControlStyle = {}));
 
-var MapsAPILoader = (function () {
+var __decorate$2 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var MapsAPILoader = /** @class */ (function () {
     function MapsAPILoader() {
     }
+    MapsAPILoader = __decorate$2([
+        _angular_core.Injectable()
+    ], MapsAPILoader);
     return MapsAPILoader;
 }());
-MapsAPILoader.decorators = [
-    { type: _angular_core.Injectable },
-];
-/** @nocollapse */
-MapsAPILoader.ctorParameters = function () { return []; };
 
+var __decorate$1 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$1 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 /**
  * Wrapper class that handles the communication with the Google Maps Javascript
  * API v3
  */
-var GoogleMapsAPIWrapper = (function () {
+var GoogleMapsAPIWrapper = /** @class */ (function () {
     function GoogleMapsAPIWrapper(_loader, _zone) {
         var _this = this;
         this._loader = _loader;
@@ -165,7 +178,7 @@ var GoogleMapsAPIWrapper = (function () {
     };
     GoogleMapsAPIWrapper.prototype.attachPolygonListeners = function (eventName) {
         var _this = this;
-        return rxjs_Observable.Observable.create(function (observer) {
+        return rxjs.Observable.create(function (observer) {
             _this._drawingManager.addListener(eventName, function (polygon) {
                 return _this._zone.run(function () { return observer.next(polygon); });
             });
@@ -202,7 +215,7 @@ var GoogleMapsAPIWrapper = (function () {
     };
     GoogleMapsAPIWrapper.prototype.subscribeToMapEvent = function (eventName) {
         var _this = this;
-        return rxjs_Observable.Observable.create(function (observer) {
+        return rxjs.Observable.create(function (observer) {
             _this._map.then(function (m) {
                 m.addListener(eventName, function (arg) {
                     _this._zone.run(function () { return observer.next(arg); });
@@ -279,7 +292,7 @@ var GoogleMapsAPIWrapper = (function () {
             var position = control.position ||
                 "TOP_CENTER";
             var controllPosition = map.controls[google.maps.ControlPosition[position]].push(_controlDiv);
-            var observable = rxjs_Observable.Observable.create(function (observer) {
+            var observable = rxjs.Observable.create(function (observer) {
                 _controlUI.addEventListener("click", function () {
                     _this._zone.run(function () { return observer.next(control.type); });
                 });
@@ -291,18 +304,23 @@ var GoogleMapsAPIWrapper = (function () {
             };
         });
     };
+    GoogleMapsAPIWrapper = __decorate$1([
+        _angular_core.Injectable(),
+        __metadata$1("design:paramtypes", [MapsAPILoader, _angular_core.NgZone])
+    ], GoogleMapsAPIWrapper);
     return GoogleMapsAPIWrapper;
 }());
-GoogleMapsAPIWrapper.decorators = [
-    { type: _angular_core.Injectable },
-];
-/** @nocollapse */
-GoogleMapsAPIWrapper.ctorParameters = function () { return [
-    { type: MapsAPILoader, },
-    { type: _angular_core.NgZone, },
-]; };
 
-var CircleManager = (function () {
+var __decorate$3 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$2 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var CircleManager = /** @class */ (function () {
     function CircleManager(_apiWrapper, _zone) {
         this._apiWrapper = _apiWrapper;
         this._zone = _zone;
@@ -373,7 +391,7 @@ var CircleManager = (function () {
     
     CircleManager.prototype.createEventObservable = function (eventName, circle) {
         var _this = this;
-        return rxjs_Observable.Observable.create(function (observer) {
+        return rxjs.Observable.create(function (observer) {
             var listener = null;
             _this._circles.get(circle).then(function (c) {
                 listener = c.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
@@ -385,18 +403,23 @@ var CircleManager = (function () {
             };
         });
     };
+    CircleManager = __decorate$3([
+        _angular_core.Injectable(),
+        __metadata$2("design:paramtypes", [GoogleMapsAPIWrapper, _angular_core.NgZone])
+    ], CircleManager);
     return CircleManager;
 }());
-CircleManager.decorators = [
-    { type: _angular_core.Injectable },
-];
-/** @nocollapse */
-CircleManager.ctorParameters = function () { return [
-    { type: GoogleMapsAPIWrapper, },
-    { type: _angular_core.NgZone, },
-]; };
 
-var MarkerManager = (function () {
+var __decorate$5 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$4 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var MarkerManager = /** @class */ (function () {
     function MarkerManager(_mapsWrapper, _zone) {
         this._mapsWrapper = _mapsWrapper;
         this._zone = _zone;
@@ -458,24 +481,29 @@ var MarkerManager = (function () {
     };
     MarkerManager.prototype.createEventObservable = function (eventName, marker) {
         var _this = this;
-        return rxjs_Observable.Observable.create(function (observer) {
+        return rxjs.Observable.create(function (observer) {
             _this._markers.get(marker).then(function (m) {
                 m.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
             });
         });
     };
+    MarkerManager = __decorate$5([
+        _angular_core.Injectable(),
+        __metadata$4("design:paramtypes", [GoogleMapsAPIWrapper, _angular_core.NgZone])
+    ], MarkerManager);
     return MarkerManager;
 }());
-MarkerManager.decorators = [
-    { type: _angular_core.Injectable },
-];
-/** @nocollapse */
-MarkerManager.ctorParameters = function () { return [
-    { type: GoogleMapsAPIWrapper, },
-    { type: _angular_core.NgZone, },
-]; };
 
-var InfoWindowManager = (function () {
+var __decorate$4 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$3 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var InfoWindowManager = /** @class */ (function () {
     function InfoWindowManager(_mapsWrapper, _zone, _markerManager) {
         this._mapsWrapper = _mapsWrapper;
         this._zone = _zone;
@@ -540,25 +568,30 @@ var InfoWindowManager = (function () {
      */
     InfoWindowManager.prototype.createEventObservable = function (eventName, infoWindow) {
         var _this = this;
-        return rxjs_Observable.Observable.create(function (observer) {
+        return rxjs.Observable.create(function (observer) {
             _this._infoWindows.get(infoWindow).then(function (i) {
                 i.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
             });
         });
     };
+    InfoWindowManager = __decorate$4([
+        _angular_core.Injectable(),
+        __metadata$3("design:paramtypes", [GoogleMapsAPIWrapper, _angular_core.NgZone,
+            MarkerManager])
+    ], InfoWindowManager);
     return InfoWindowManager;
 }());
-InfoWindowManager.decorators = [
-    { type: _angular_core.Injectable },
-];
-/** @nocollapse */
-InfoWindowManager.ctorParameters = function () { return [
-    { type: GoogleMapsAPIWrapper, },
-    { type: _angular_core.NgZone, },
-    { type: MarkerManager, },
-]; };
 
-var PolygonManager = (function () {
+var __decorate$6 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$5 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var PolygonManager = /** @class */ (function () {
     function PolygonManager(_mapsWrapper, _zone) {
         this._mapsWrapper = _mapsWrapper;
         this._zone = _zone;
@@ -620,7 +653,7 @@ var PolygonManager = (function () {
     };
     PolygonManager.prototype.createEventObservable = function (eventName, path) {
         var _this = this;
-        return rxjs_Observable.Observable.create(function (observer) {
+        return rxjs.Observable.create(function (observer) {
             _this._polygons.get(path).then(function (l) {
                 l.addListener(eventName, function (e) {
                     return _this._zone.run(function () { return observer.next(e); });
@@ -630,7 +663,7 @@ var PolygonManager = (function () {
     };
     PolygonManager.prototype.createDragEventObservable = function (eventName, path) {
         var _this = this;
-        return rxjs_Observable.Observable.create(function (observer) {
+        return rxjs.Observable.create(function (observer) {
             _this._polygons.get(path).then(function (l) {
                 l.addListener(eventName, function () {
                     return _this._zone.run(function () { return observer.next(_this.getBounds(l)); });
@@ -643,7 +676,7 @@ var PolygonManager = (function () {
     };
     PolygonManager.prototype.createPolyChangesObservable = function (eventName, path) {
         var _this = this;
-        return rxjs_Observable.Observable.create(function (observer) {
+        return rxjs.Observable.create(function (observer) {
             _this._polygons.get(path).then(function (l) {
                 l.getPaths().forEach(function (path) {
                     google.maps.event.addListener(path, eventName, function () {
@@ -671,23 +704,30 @@ var PolygonManager = (function () {
         }
         return bounds;
     };
+    PolygonManager = __decorate$6([
+        _angular_core.Injectable(),
+        __metadata$5("design:paramtypes", [GoogleMapsAPIWrapper,
+            _angular_core.NgZone])
+    ], PolygonManager);
     return PolygonManager;
 }());
-PolygonManager.decorators = [
-    { type: _angular_core.Injectable },
-];
-/** @nocollapse */
-PolygonManager.ctorParameters = function () { return [
-    { type: GoogleMapsAPIWrapper, },
-    { type: _angular_core.NgZone, },
-]; };
 
-var PolylineManager = (function () {
+var __decorate$7 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$6 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var PolylineManager = /** @class */ (function () {
     function PolylineManager(_mapsWrapper, _zone) {
         this._mapsWrapper = _mapsWrapper;
         this._zone = _zone;
         this._polylines = new Map();
     }
+    PolylineManager_1 = PolylineManager;
     PolylineManager._convertPoints = function (line) {
         var path = line._getPoints().map(function (point) {
             return { lat: point.latitude, lng: point.longitude };
@@ -695,7 +735,7 @@ var PolylineManager = (function () {
         return path;
     };
     PolylineManager.prototype.addPolyline = function (line) {
-        var path = PolylineManager._convertPoints(line);
+        var path = PolylineManager_1._convertPoints(line);
         var polylinePromise = this._mapsWrapper.createPolyline({
             clickable: line.clickable,
             draggable: line.draggable,
@@ -712,7 +752,7 @@ var PolylineManager = (function () {
     };
     PolylineManager.prototype.updatePolylinePoints = function (line) {
         var _this = this;
-        var path = PolylineManager._convertPoints(line);
+        var path = PolylineManager_1._convertPoints(line);
         var m = this._polylines.get(line);
         if (m == null) {
             return Promise.resolve();
@@ -737,27 +777,33 @@ var PolylineManager = (function () {
     };
     PolylineManager.prototype.createEventObservable = function (eventName, line) {
         var _this = this;
-        return rxjs_Observable.Observable.create(function (observer) {
+        return rxjs.Observable.create(function (observer) {
             _this._polylines.get(line).then(function (l) {
                 l.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
             });
         });
     };
+    var PolylineManager_1;
+    PolylineManager = PolylineManager_1 = __decorate$7([
+        _angular_core.Injectable(),
+        __metadata$6("design:paramtypes", [GoogleMapsAPIWrapper, _angular_core.NgZone])
+    ], PolylineManager);
     return PolylineManager;
 }());
-PolylineManager.decorators = [
-    { type: _angular_core.Injectable },
-];
-/** @nocollapse */
-PolylineManager.ctorParameters = function () { return [
-    { type: GoogleMapsAPIWrapper, },
-    { type: _angular_core.NgZone, },
-]; };
 
+var __decorate$8 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$7 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 /**
  * Manages all KML Layers for a Google Map instance.
  */
-var KmlLayerManager = (function () {
+var KmlLayerManager = /** @class */ (function () {
     function KmlLayerManager(_wrapper, _zone) {
         this._wrapper = _wrapper;
         this._zone = _zone;
@@ -795,27 +841,32 @@ var KmlLayerManager = (function () {
      */
     KmlLayerManager.prototype.createEventObservable = function (eventName, layer) {
         var _this = this;
-        return rxjs_Observable.Observable.create(function (observer) {
+        return rxjs.Observable.create(function (observer) {
             _this._layers.get(layer).then(function (m) {
                 m.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
             });
         });
     };
+    KmlLayerManager = __decorate$8([
+        _angular_core.Injectable(),
+        __metadata$7("design:paramtypes", [GoogleMapsAPIWrapper, _angular_core.NgZone])
+    ], KmlLayerManager);
     return KmlLayerManager;
 }());
-KmlLayerManager.decorators = [
-    { type: _angular_core.Injectable },
-];
-/** @nocollapse */
-KmlLayerManager.ctorParameters = function () { return [
-    { type: GoogleMapsAPIWrapper, },
-    { type: _angular_core.NgZone, },
-]; };
 
+var __decorate$9 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$8 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 /**
  * Manages all Data Layers for a Google Map instance.
  */
-var DataLayerManager = (function () {
+var DataLayerManager = /** @class */ (function () {
     function DataLayerManager(_wrapper, _zone) {
         this._wrapper = _wrapper;
         this._zone = _zone;
@@ -869,23 +920,28 @@ var DataLayerManager = (function () {
      */
     DataLayerManager.prototype.createEventObservable = function (eventName, layer) {
         var _this = this;
-        return rxjs_Observable.Observable.create(function (observer) {
+        return rxjs.Observable.create(function (observer) {
             _this._layers.get(layer).then(function (d) {
                 d.addListener(eventName, function (e) { return _this._zone.run(function () { return observer.next(e); }); });
             });
         });
     };
+    DataLayerManager = __decorate$9([
+        _angular_core.Injectable(),
+        __metadata$8("design:paramtypes", [GoogleMapsAPIWrapper, _angular_core.NgZone])
+    ], DataLayerManager);
     return DataLayerManager;
 }());
-DataLayerManager.decorators = [
-    { type: _angular_core.Injectable },
-];
-/** @nocollapse */
-DataLayerManager.ctorParameters = function () { return [
-    { type: GoogleMapsAPIWrapper, },
-    { type: _angular_core.NgZone, },
-]; };
 
+var __decorate = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 /**
  * AgmMap renders a Google Map.
  * **Important note**: To be able see a map in the browser, you have to define a height for the
@@ -909,7 +965,7 @@ DataLayerManager.ctorParameters = function () { return [
  * })
  * ```
  */
-var AgmMap = (function () {
+var AgmMap = /** @class */ (function () {
     function AgmMap(_elem, _mapsWrapper, _polygonManager) {
         var _this = this;
         this._elem = _elem;
@@ -1103,6 +1159,7 @@ var AgmMap = (function () {
             console.log("this.bounds", _this.bounds);
         });
     }
+    AgmMap_1 = AgmMap;
     /** @internal */
     AgmMap.prototype.ngOnInit = function () {
         // todo: this should be solved with a new component and a viewChild decorator
@@ -1225,7 +1282,7 @@ var AgmMap = (function () {
     AgmMap.prototype._updateMapOptionsChanges = function (changes) {
         // console.log('changes', changes);
         var options = {};
-        var optionKeys = Object.keys(changes).filter(function (k) { return AgmMap._mapOptionsAttributes.indexOf(k) !== -1; });
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmMap_1._mapOptionsAttributes.indexOf(k) !== -1; });
         optionKeys.forEach(function (k) {
             options[k] = changes[k].currentValue;
         });
@@ -1440,125 +1497,286 @@ var AgmMap = (function () {
             _this._observableSubscriptions.push(s);
         });
     };
+    var AgmMap_1;
+    /**
+     * Map option attributes that can change over time
+     */
+    AgmMap._mapOptionsAttributes = [
+        "disableDoubleClickZoom",
+        "scrollwheel",
+        "draggable",
+        "draggableCursor",
+        "draggingCursor",
+        "keyboardShortcuts",
+        "zoomControl",
+        "zoomControlOptions",
+        "styles",
+        "streetViewControl",
+        "streetViewControlOptions",
+        "zoom",
+        "mapTypeControl",
+        "mapTypeControlOptions",
+        "minZoom",
+        "maxZoom",
+        "panControl",
+        "panControlOptions",
+        "rotateControl",
+        "rotateControlOptions",
+        "fullscreenControl",
+        "fullscreenControlOptions",
+        "scaleControl",
+        "scaleControlOptions",
+        "mapTypeId",
+        "clickableIcons",
+        "gestureHandling"
+    ];
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Number)
+    ], AgmMap.prototype, "longitude", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Number)
+    ], AgmMap.prototype, "latitude", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Number)
+    ], AgmMap.prototype, "zoom", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Number)
+    ], AgmMap.prototype, "tilt", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Number)
+    ], AgmMap.prototype, "minZoom", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Number)
+    ], AgmMap.prototype, "maxZoom", void 0);
+    __decorate([
+        _angular_core.Input("mapDraggable"),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "draggable", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "disableDoubleClickZoom", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "disableDefaultUI", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "scrollwheel", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", String)
+    ], AgmMap.prototype, "backgroundColor", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", String)
+    ], AgmMap.prototype, "draggableCursor", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", String)
+    ], AgmMap.prototype, "draggingCursor", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "keyboardShortcuts", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "zoomControl", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "zoomControlOptions", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Array)
+    ], AgmMap.prototype, "styles", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "usePanning", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "streetViewControl", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "streetViewControlOptions", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "fitBounds", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Array)
+    ], AgmMap.prototype, "fitPoints", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "fitMultiple", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "trafficLayer", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "scaleControl", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "scaleControlOptions", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "mapTypeControl", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "mapCustomControl", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "mapTypeControlOptions", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "panControl", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "panControlOptions", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "rotateControl", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "rotateControlOptions", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "fullscreenControl", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "fullscreenControlOptions", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", String)
+    ], AgmMap.prototype, "mapTypeId", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "clickableIcons", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", String)
+    ], AgmMap.prototype, "gestureHandling", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "drawingModes", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", String)
+    ], AgmMap.prototype, "drawingManagerPosition", void 0);
+    __decorate([
+        _angular_core.Input(),
+        __metadata("design:type", Array)
+    ], AgmMap.prototype, "extraControls", void 0);
+    __decorate([
+        _angular_core.Output(),
+        __metadata("design:type", _angular_core.EventEmitter)
+    ], AgmMap.prototype, "mapClick", void 0);
+    __decorate([
+        _angular_core.Output(),
+        __metadata("design:type", _angular_core.EventEmitter)
+    ], AgmMap.prototype, "mapRightClick", void 0);
+    __decorate([
+        _angular_core.Output(),
+        __metadata("design:type", _angular_core.EventEmitter)
+    ], AgmMap.prototype, "mapDblClick", void 0);
+    __decorate([
+        _angular_core.Output(),
+        __metadata("design:type", _angular_core.EventEmitter)
+    ], AgmMap.prototype, "centerChange", void 0);
+    __decorate([
+        _angular_core.Output(),
+        __metadata("design:type", _angular_core.EventEmitter)
+    ], AgmMap.prototype, "boundsChange", void 0);
+    __decorate([
+        _angular_core.Output(),
+        __metadata("design:type", _angular_core.EventEmitter)
+    ], AgmMap.prototype, "idle", void 0);
+    __decorate([
+        _angular_core.Output(),
+        __metadata("design:type", _angular_core.EventEmitter)
+    ], AgmMap.prototype, "zoomChange", void 0);
+    __decorate([
+        _angular_core.Output(),
+        __metadata("design:type", _angular_core.EventEmitter)
+    ], AgmMap.prototype, "mapReady", void 0);
+    __decorate([
+        _angular_core.Output(),
+        __metadata("design:type", _angular_core.EventEmitter)
+    ], AgmMap.prototype, "polygonComplete", void 0);
+    __decorate([
+        _angular_core.Output(),
+        __metadata("design:type", _angular_core.EventEmitter)
+    ], AgmMap.prototype, "polygonDeleted", void 0);
+    __decorate([
+        _angular_core.Output(),
+        __metadata("design:type", _angular_core.EventEmitter)
+    ], AgmMap.prototype, "extraControlsAction", void 0);
+    AgmMap = AgmMap_1 = __decorate([
+        _angular_core.Component({
+            selector: "agm-map",
+            providers: [
+                GoogleMapsAPIWrapper,
+                MarkerManager,
+                InfoWindowManager,
+                CircleManager,
+                PolylineManager,
+                PolygonManager,
+                KmlLayerManager,
+                DataLayerManager
+            ],
+            host: {
+                // todo: deprecated - we will remove it with the next version
+                "[class.sebm-google-map-container]": "true"
+            },
+            styles: [
+                "\n    .agm-map-container-inner {\n      width: inherit;\n      height: 100%;\n    }\n    .agm-map-content {\n      display:none;\n    }\n  "
+            ],
+            template: "\n    <div class='agm-map-container-inner sebm-google-map-container-inner'></div>\n    <div class='agm-map-content'>\n      <ng-content></ng-content>\n    </div>\n  "
+        }),
+        __metadata("design:paramtypes", [_angular_core.ElementRef,
+            GoogleMapsAPIWrapper,
+            PolygonManager])
+    ], AgmMap);
     return AgmMap;
 }());
-/**
- * Map option attributes that can change over time
- */
-AgmMap._mapOptionsAttributes = [
-    "disableDoubleClickZoom",
-    "scrollwheel",
-    "draggable",
-    "draggableCursor",
-    "draggingCursor",
-    "keyboardShortcuts",
-    "zoomControl",
-    "zoomControlOptions",
-    "styles",
-    "streetViewControl",
-    "streetViewControlOptions",
-    "zoom",
-    "mapTypeControl",
-    "mapTypeControlOptions",
-    "minZoom",
-    "maxZoom",
-    "panControl",
-    "panControlOptions",
-    "rotateControl",
-    "rotateControlOptions",
-    "fullscreenControl",
-    "fullscreenControlOptions",
-    "scaleControl",
-    "scaleControlOptions",
-    "mapTypeId",
-    "clickableIcons",
-    "gestureHandling"
-];
-AgmMap.decorators = [
-    { type: _angular_core.Component, args: [{
-                selector: "agm-map",
-                providers: [
-                    GoogleMapsAPIWrapper,
-                    MarkerManager,
-                    InfoWindowManager,
-                    CircleManager,
-                    PolylineManager,
-                    PolygonManager,
-                    KmlLayerManager,
-                    DataLayerManager
-                ],
-                host: {
-                    // todo: deprecated - we will remove it with the next version
-                    "[class.sebm-google-map-container]": "true"
-                },
-                styles: [
-                    "\n    .agm-map-container-inner {\n      width: inherit;\n      height: 100%;\n    }\n    .agm-map-content {\n      display:none;\n    }\n  "
-                ],
-                template: "\n    <div class='agm-map-container-inner sebm-google-map-container-inner'></div>\n    <div class='agm-map-content'>\n      <ng-content></ng-content>\n    </div>\n  "
-            },] },
-];
-/** @nocollapse */
-AgmMap.ctorParameters = function () { return [
-    { type: _angular_core.ElementRef, },
-    { type: GoogleMapsAPIWrapper, },
-    { type: PolygonManager, },
-]; };
-AgmMap.propDecorators = {
-    'longitude': [{ type: _angular_core.Input },],
-    'latitude': [{ type: _angular_core.Input },],
-    'zoom': [{ type: _angular_core.Input },],
-    'tilt': [{ type: _angular_core.Input },],
-    'minZoom': [{ type: _angular_core.Input },],
-    'maxZoom': [{ type: _angular_core.Input },],
-    'draggable': [{ type: _angular_core.Input, args: ["mapDraggable",] },],
-    'disableDoubleClickZoom': [{ type: _angular_core.Input },],
-    'disableDefaultUI': [{ type: _angular_core.Input },],
-    'scrollwheel': [{ type: _angular_core.Input },],
-    'backgroundColor': [{ type: _angular_core.Input },],
-    'draggableCursor': [{ type: _angular_core.Input },],
-    'draggingCursor': [{ type: _angular_core.Input },],
-    'keyboardShortcuts': [{ type: _angular_core.Input },],
-    'zoomControl': [{ type: _angular_core.Input },],
-    'zoomControlOptions': [{ type: _angular_core.Input },],
-    'styles': [{ type: _angular_core.Input },],
-    'usePanning': [{ type: _angular_core.Input },],
-    'streetViewControl': [{ type: _angular_core.Input },],
-    'streetViewControlOptions': [{ type: _angular_core.Input },],
-    'fitBounds': [{ type: _angular_core.Input },],
-    'fitPoints': [{ type: _angular_core.Input },],
-    'fitMultiple': [{ type: _angular_core.Input },],
-    'trafficLayer': [{ type: _angular_core.Input },],
-    'scaleControl': [{ type: _angular_core.Input },],
-    'scaleControlOptions': [{ type: _angular_core.Input },],
-    'mapTypeControl': [{ type: _angular_core.Input },],
-    'mapCustomControl': [{ type: _angular_core.Input },],
-    'mapTypeControlOptions': [{ type: _angular_core.Input },],
-    'panControl': [{ type: _angular_core.Input },],
-    'panControlOptions': [{ type: _angular_core.Input },],
-    'rotateControl': [{ type: _angular_core.Input },],
-    'rotateControlOptions': [{ type: _angular_core.Input },],
-    'fullscreenControl': [{ type: _angular_core.Input },],
-    'fullscreenControlOptions': [{ type: _angular_core.Input },],
-    'mapTypeId': [{ type: _angular_core.Input },],
-    'clickableIcons': [{ type: _angular_core.Input },],
-    'gestureHandling': [{ type: _angular_core.Input },],
-    'drawingModes': [{ type: _angular_core.Input },],
-    'drawingManagerPosition': [{ type: _angular_core.Input },],
-    'extraControls': [{ type: _angular_core.Input },],
-    'mapClick': [{ type: _angular_core.Output },],
-    'mapRightClick': [{ type: _angular_core.Output },],
-    'mapDblClick': [{ type: _angular_core.Output },],
-    'centerChange': [{ type: _angular_core.Output },],
-    'boundsChange': [{ type: _angular_core.Output },],
-    'idle': [{ type: _angular_core.Output },],
-    'zoomChange': [{ type: _angular_core.Output },],
-    'mapReady': [{ type: _angular_core.Output },],
-    'polygonComplete': [{ type: _angular_core.Output },],
-    'polygonDeleted': [{ type: _angular_core.Output },],
-    'extraControlsAction': [{ type: _angular_core.Output },],
-};
 
-var AgmCircle = (function () {
+var __decorate$10 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$9 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var AgmCircle = /** @class */ (function () {
     function AgmCircle(_manager) {
         this._manager = _manager;
         /**
@@ -1647,6 +1865,7 @@ var AgmCircle = (function () {
         this._circleAddedToManager = false;
         this._eventSubscriptions = [];
     }
+    AgmCircle_1 = AgmCircle;
     /** @internal */
     AgmCircle.prototype.ngOnInit = function () {
         this._manager.addCircle(this);
@@ -1677,7 +1896,7 @@ var AgmCircle = (function () {
     };
     AgmCircle.prototype._updateCircleOptionsChanges = function (changes) {
         var options = {};
-        var optionKeys = Object.keys(changes).filter(function (k) { return AgmCircle._mapOptions.indexOf(k) !== -1; });
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmCircle_1._mapOptions.indexOf(k) !== -1; });
         optionKeys.forEach(function (k) { options[k] = changes[k].currentValue; });
         if (optionKeys.length > 0) {
             this._manager.setOptions(this, options);
@@ -1727,51 +1946,137 @@ var AgmCircle = (function () {
      */
     AgmCircle.prototype.getBounds = function () { return this._manager.getBounds(this); };
     AgmCircle.prototype.getCenter = function () { return this._manager.getCenter(this); };
+    var AgmCircle_1;
+    AgmCircle._mapOptions = [
+        'fillColor', 'fillOpacity', 'strokeColor', 'strokeOpacity', 'strokePosition', 'strokeWeight',
+        'visible', 'zIndex'
+    ];
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", Number)
+    ], AgmCircle.prototype, "latitude", void 0);
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", Number)
+    ], AgmCircle.prototype, "longitude", void 0);
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", Boolean)
+    ], AgmCircle.prototype, "clickable", void 0);
+    __decorate$10([
+        _angular_core.Input('circleDraggable'),
+        __metadata$9("design:type", Boolean)
+    ], AgmCircle.prototype, "draggable", void 0);
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", Boolean)
+    ], AgmCircle.prototype, "editable", void 0);
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", String)
+    ], AgmCircle.prototype, "fillColor", void 0);
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", Number)
+    ], AgmCircle.prototype, "fillOpacity", void 0);
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", Number)
+    ], AgmCircle.prototype, "radius", void 0);
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", String)
+    ], AgmCircle.prototype, "strokeColor", void 0);
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", Number)
+    ], AgmCircle.prototype, "strokeOpacity", void 0);
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", String)
+    ], AgmCircle.prototype, "strokePosition", void 0);
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", Number)
+    ], AgmCircle.prototype, "strokeWeight", void 0);
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", Boolean)
+    ], AgmCircle.prototype, "visible", void 0);
+    __decorate$10([
+        _angular_core.Input(),
+        __metadata$9("design:type", Number)
+    ], AgmCircle.prototype, "zIndex", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "centerChange", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "circleClick", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "circleDblClick", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "drag", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "dragEnd", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "dragStart", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "mouseDown", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "mouseMove", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "mouseOut", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "mouseOver", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "mouseUp", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "radiusChange", void 0);
+    __decorate$10([
+        _angular_core.Output(),
+        __metadata$9("design:type", _angular_core.EventEmitter)
+    ], AgmCircle.prototype, "rightClick", void 0);
+    AgmCircle = AgmCircle_1 = __decorate$10([
+        _angular_core.Directive({
+            selector: 'agm-circle'
+        }),
+        __metadata$9("design:paramtypes", [CircleManager])
+    ], AgmCircle);
     return AgmCircle;
 }());
-AgmCircle._mapOptions = [
-    'fillColor', 'fillOpacity', 'strokeColor', 'strokeOpacity', 'strokePosition', 'strokeWeight',
-    'visible', 'zIndex'
-];
-AgmCircle.decorators = [
-    { type: _angular_core.Directive, args: [{
-                selector: 'agm-circle'
-            },] },
-];
-/** @nocollapse */
-AgmCircle.ctorParameters = function () { return [
-    { type: CircleManager, },
-]; };
-AgmCircle.propDecorators = {
-    'latitude': [{ type: _angular_core.Input },],
-    'longitude': [{ type: _angular_core.Input },],
-    'clickable': [{ type: _angular_core.Input },],
-    'draggable': [{ type: _angular_core.Input, args: ['circleDraggable',] },],
-    'editable': [{ type: _angular_core.Input },],
-    'fillColor': [{ type: _angular_core.Input },],
-    'fillOpacity': [{ type: _angular_core.Input },],
-    'radius': [{ type: _angular_core.Input },],
-    'strokeColor': [{ type: _angular_core.Input },],
-    'strokeOpacity': [{ type: _angular_core.Input },],
-    'strokePosition': [{ type: _angular_core.Input },],
-    'strokeWeight': [{ type: _angular_core.Input },],
-    'visible': [{ type: _angular_core.Input },],
-    'zIndex': [{ type: _angular_core.Input },],
-    'centerChange': [{ type: _angular_core.Output },],
-    'circleClick': [{ type: _angular_core.Output },],
-    'circleDblClick': [{ type: _angular_core.Output },],
-    'drag': [{ type: _angular_core.Output },],
-    'dragEnd': [{ type: _angular_core.Output },],
-    'dragStart': [{ type: _angular_core.Output },],
-    'mouseDown': [{ type: _angular_core.Output },],
-    'mouseMove': [{ type: _angular_core.Output },],
-    'mouseOut': [{ type: _angular_core.Output },],
-    'mouseOver': [{ type: _angular_core.Output },],
-    'mouseUp': [{ type: _angular_core.Output },],
-    'radiusChange': [{ type: _angular_core.Output },],
-    'rightClick': [{ type: _angular_core.Output },],
-};
 
+var __decorate$11 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$10 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var infoWindowId = 0;
 /**
  * AgmInfoWindow renders a info window inside a {@link AgmMarker} or standalone.
@@ -1799,7 +2104,7 @@ var infoWindowId = 0;
  * })
  * ```
  */
-var AgmInfoWindow = (function () {
+var AgmInfoWindow = /** @class */ (function () {
     function AgmInfoWindow(_infoWindowManager, _el) {
         this._infoWindowManager = _infoWindowManager;
         this._el = _el;
@@ -1814,6 +2119,7 @@ var AgmInfoWindow = (function () {
         this._infoWindowAddedToManager = false;
         this._id = (infoWindowId++).toString();
     }
+    AgmInfoWindow_1 = AgmInfoWindow;
     AgmInfoWindow.prototype.ngOnInit = function () {
         this.content = this._el.nativeElement.querySelector('.agm-info-window-content');
         this._infoWindowManager.addInfoWindow(this);
@@ -1850,7 +2156,7 @@ var AgmInfoWindow = (function () {
     };
     AgmInfoWindow.prototype._setInfoWindowOptions = function (changes) {
         var options = {};
-        var optionKeys = Object.keys(changes).filter(function (k) { return AgmInfoWindow._infoWindowOptionsInputs.indexOf(k) !== -1; });
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmInfoWindow_1._infoWindowOptionsInputs.indexOf(k) !== -1; });
         optionKeys.forEach(function (k) { options[k] = changes[k].currentValue; });
         this._infoWindowManager.setOptions(this, options);
     };
@@ -1871,32 +2177,57 @@ var AgmInfoWindow = (function () {
     AgmInfoWindow.prototype.toString = function () { return 'AgmInfoWindow-' + this._id.toString(); };
     /** @internal */
     AgmInfoWindow.prototype.ngOnDestroy = function () { this._infoWindowManager.deleteInfoWindow(this); };
+    var AgmInfoWindow_1;
+    AgmInfoWindow._infoWindowOptionsInputs = ['disableAutoPan', 'maxWidth'];
+    __decorate$11([
+        _angular_core.Input(),
+        __metadata$10("design:type", Number)
+    ], AgmInfoWindow.prototype, "latitude", void 0);
+    __decorate$11([
+        _angular_core.Input(),
+        __metadata$10("design:type", Number)
+    ], AgmInfoWindow.prototype, "longitude", void 0);
+    __decorate$11([
+        _angular_core.Input(),
+        __metadata$10("design:type", Boolean)
+    ], AgmInfoWindow.prototype, "disableAutoPan", void 0);
+    __decorate$11([
+        _angular_core.Input(),
+        __metadata$10("design:type", Number)
+    ], AgmInfoWindow.prototype, "zIndex", void 0);
+    __decorate$11([
+        _angular_core.Input(),
+        __metadata$10("design:type", Number)
+    ], AgmInfoWindow.prototype, "maxWidth", void 0);
+    __decorate$11([
+        _angular_core.Input(),
+        __metadata$10("design:type", Boolean)
+    ], AgmInfoWindow.prototype, "isOpen", void 0);
+    __decorate$11([
+        _angular_core.Output(),
+        __metadata$10("design:type", _angular_core.EventEmitter)
+    ], AgmInfoWindow.prototype, "infoWindowClose", void 0);
+    AgmInfoWindow = AgmInfoWindow_1 = __decorate$11([
+        _angular_core.Component({
+            selector: 'agm-info-window',
+            template: "<div class='agm-info-window-content'>\n      <ng-content></ng-content>\n    </div>\n  "
+        }),
+        __metadata$10("design:paramtypes", [InfoWindowManager, _angular_core.ElementRef])
+    ], AgmInfoWindow);
     return AgmInfoWindow;
 }());
-AgmInfoWindow._infoWindowOptionsInputs = ['disableAutoPan', 'maxWidth'];
-AgmInfoWindow.decorators = [
-    { type: _angular_core.Component, args: [{
-                selector: 'agm-info-window',
-                template: "<div class='agm-info-window-content'>\n      <ng-content></ng-content>\n    </div>\n  "
-            },] },
-];
-/** @nocollapse */
-AgmInfoWindow.ctorParameters = function () { return [
-    { type: InfoWindowManager, },
-    { type: _angular_core.ElementRef, },
-]; };
-AgmInfoWindow.propDecorators = {
-    'latitude': [{ type: _angular_core.Input },],
-    'longitude': [{ type: _angular_core.Input },],
-    'disableAutoPan': [{ type: _angular_core.Input },],
-    'zIndex': [{ type: _angular_core.Input },],
-    'maxWidth': [{ type: _angular_core.Input },],
-    'isOpen': [{ type: _angular_core.Input },],
-    'infoWindowClose': [{ type: _angular_core.Output },],
-};
 
+var __decorate$12 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$11 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var layerId = 0;
-var AgmKmlLayer = (function () {
+var AgmKmlLayer = /** @class */ (function () {
     function AgmKmlLayer(_manager) {
         this._manager = _manager;
         this._addedToManager = false;
@@ -1944,6 +2275,7 @@ var AgmKmlLayer = (function () {
          */
         this.statusChange = new _angular_core.EventEmitter();
     }
+    AgmKmlLayer_1 = AgmKmlLayer;
     AgmKmlLayer.prototype.ngOnInit = function () {
         if (this._addedToManager) {
             return;
@@ -1960,7 +2292,7 @@ var AgmKmlLayer = (function () {
     };
     AgmKmlLayer.prototype._updatePolygonOptions = function (changes) {
         var options = Object.keys(changes)
-            .filter(function (k) { return AgmKmlLayer._kmlLayerOptions.indexOf(k) !== -1; })
+            .filter(function (k) { return AgmKmlLayer_1._kmlLayerOptions.indexOf(k) !== -1; })
             .reduce(function (obj, k) {
             obj[k] = changes[k].currentValue;
             return obj;
@@ -1991,30 +2323,62 @@ var AgmKmlLayer = (function () {
         // unsubscribe all registered observable subscriptions
         this._subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
+    var AgmKmlLayer_1;
+    AgmKmlLayer._kmlLayerOptions = ['clickable', 'preserveViewport', 'screenOverlays', 'suppressInfoWindows', 'url', 'zIndex'];
+    __decorate$12([
+        _angular_core.Input(),
+        __metadata$11("design:type", Boolean)
+    ], AgmKmlLayer.prototype, "clickable", void 0);
+    __decorate$12([
+        _angular_core.Input(),
+        __metadata$11("design:type", Boolean)
+    ], AgmKmlLayer.prototype, "preserveViewport", void 0);
+    __decorate$12([
+        _angular_core.Input(),
+        __metadata$11("design:type", Boolean)
+    ], AgmKmlLayer.prototype, "screenOverlays", void 0);
+    __decorate$12([
+        _angular_core.Input(),
+        __metadata$11("design:type", Boolean)
+    ], AgmKmlLayer.prototype, "suppressInfoWindows", void 0);
+    __decorate$12([
+        _angular_core.Input(),
+        __metadata$11("design:type", String)
+    ], AgmKmlLayer.prototype, "url", void 0);
+    __decorate$12([
+        _angular_core.Input(),
+        __metadata$11("design:type", Number)
+    ], AgmKmlLayer.prototype, "zIndex", void 0);
+    __decorate$12([
+        _angular_core.Output(),
+        __metadata$11("design:type", _angular_core.EventEmitter)
+    ], AgmKmlLayer.prototype, "layerClick", void 0);
+    __decorate$12([
+        _angular_core.Output(),
+        __metadata$11("design:type", _angular_core.EventEmitter)
+    ], AgmKmlLayer.prototype, "defaultViewportChange", void 0);
+    __decorate$12([
+        _angular_core.Output(),
+        __metadata$11("design:type", _angular_core.EventEmitter)
+    ], AgmKmlLayer.prototype, "statusChange", void 0);
+    AgmKmlLayer = AgmKmlLayer_1 = __decorate$12([
+        _angular_core.Directive({
+            selector: 'agm-kml-layer'
+        }),
+        __metadata$11("design:paramtypes", [KmlLayerManager])
+    ], AgmKmlLayer);
     return AgmKmlLayer;
 }());
-AgmKmlLayer._kmlLayerOptions = ['clickable', 'preserveViewport', 'screenOverlays', 'suppressInfoWindows', 'url', 'zIndex'];
-AgmKmlLayer.decorators = [
-    { type: _angular_core.Directive, args: [{
-                selector: 'agm-kml-layer'
-            },] },
-];
-/** @nocollapse */
-AgmKmlLayer.ctorParameters = function () { return [
-    { type: KmlLayerManager, },
-]; };
-AgmKmlLayer.propDecorators = {
-    'clickable': [{ type: _angular_core.Input },],
-    'preserveViewport': [{ type: _angular_core.Input },],
-    'screenOverlays': [{ type: _angular_core.Input },],
-    'suppressInfoWindows': [{ type: _angular_core.Input },],
-    'url': [{ type: _angular_core.Input },],
-    'zIndex': [{ type: _angular_core.Input },],
-    'layerClick': [{ type: _angular_core.Output },],
-    'defaultViewportChange': [{ type: _angular_core.Output },],
-    'statusChange': [{ type: _angular_core.Output },],
-};
 
+var __decorate$13 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$12 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var layerId$1 = 0;
 /**
  * AgmDataLayer enables the user to add data layers to the map.
@@ -2206,7 +2570,7 @@ var layerId$1 = 0;
  * }
  * ```
  */
-var AgmDataLayer = (function () {
+var AgmDataLayer = /** @class */ (function () {
     function AgmDataLayer(_manager) {
         this._manager = _manager;
         this._addedToManager = false;
@@ -2221,6 +2585,7 @@ var AgmDataLayer = (function () {
          */
         this.geoJson = null;
     }
+    AgmDataLayer_1 = AgmDataLayer;
     AgmDataLayer.prototype.ngOnInit = function () {
         if (this._addedToManager) {
             return;
@@ -2259,28 +2624,42 @@ var AgmDataLayer = (function () {
             this._manager.updateGeoJson(this, geoJsonChange.currentValue);
         }
         var dataOptions = {};
-        var optionKeys = Object.keys(changes).filter(function (k) { return AgmDataLayer._dataOptionsAttributes.indexOf(k) !== -1; });
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmDataLayer_1._dataOptionsAttributes.indexOf(k) !== -1; });
         optionKeys.forEach(function (k) { return dataOptions[k] = changes[k].currentValue; });
         this._manager.setDataOptions(this, dataOptions);
     };
+    var AgmDataLayer_1;
+    AgmDataLayer._dataOptionsAttributes = ['style'];
+    __decorate$13([
+        _angular_core.Output(),
+        __metadata$12("design:type", _angular_core.EventEmitter)
+    ], AgmDataLayer.prototype, "layerClick", void 0);
+    __decorate$13([
+        _angular_core.Input(),
+        __metadata$12("design:type", Object)
+    ], AgmDataLayer.prototype, "geoJson", void 0);
+    __decorate$13([
+        _angular_core.Input(),
+        __metadata$12("design:type", Function)
+    ], AgmDataLayer.prototype, "style", void 0);
+    AgmDataLayer = AgmDataLayer_1 = __decorate$13([
+        _angular_core.Directive({
+            selector: 'agm-data-layer'
+        }),
+        __metadata$12("design:paramtypes", [DataLayerManager])
+    ], AgmDataLayer);
     return AgmDataLayer;
 }());
-AgmDataLayer._dataOptionsAttributes = ['style'];
-AgmDataLayer.decorators = [
-    { type: _angular_core.Directive, args: [{
-                selector: 'agm-data-layer'
-            },] },
-];
-/** @nocollapse */
-AgmDataLayer.ctorParameters = function () { return [
-    { type: DataLayerManager, },
-]; };
-AgmDataLayer.propDecorators = {
-    'layerClick': [{ type: _angular_core.Output },],
-    'geoJson': [{ type: _angular_core.Input },],
-    'style': [{ type: _angular_core.Input },],
-};
 
+var __decorate$14 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$13 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var markerId = 0;
 /**
  * AgmMarker renders a map marker inside a {@link AgmMap}.
@@ -2305,7 +2684,7 @@ var markerId = 0;
  * })
  * ```
  */
-var AgmMarker = (function () {
+var AgmMarker = /** @class */ (function () {
     function AgmMarker(_markerManager) {
         this._markerManager = _markerManager;
         /**
@@ -2442,35 +2821,84 @@ var AgmMarker = (function () {
         // unsubscribe all registered observable subscriptions
         this._observableSubscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
+    __decorate$14([
+        _angular_core.Input(),
+        __metadata$13("design:type", Number)
+    ], AgmMarker.prototype, "latitude", void 0);
+    __decorate$14([
+        _angular_core.Input(),
+        __metadata$13("design:type", Number)
+    ], AgmMarker.prototype, "longitude", void 0);
+    __decorate$14([
+        _angular_core.Input(),
+        __metadata$13("design:type", String)
+    ], AgmMarker.prototype, "title", void 0);
+    __decorate$14([
+        _angular_core.Input(),
+        __metadata$13("design:type", String)
+    ], AgmMarker.prototype, "label", void 0);
+    __decorate$14([
+        _angular_core.Input('markerDraggable'),
+        __metadata$13("design:type", Boolean)
+    ], AgmMarker.prototype, "draggable", void 0);
+    __decorate$14([
+        _angular_core.Input(),
+        __metadata$13("design:type", String)
+    ], AgmMarker.prototype, "iconUrl", void 0);
+    __decorate$14([
+        _angular_core.Input(),
+        __metadata$13("design:type", Boolean)
+    ], AgmMarker.prototype, "visible", void 0);
+    __decorate$14([
+        _angular_core.Input(),
+        __metadata$13("design:type", Boolean)
+    ], AgmMarker.prototype, "openInfoWindow", void 0);
+    __decorate$14([
+        _angular_core.Input(),
+        __metadata$13("design:type", Number)
+    ], AgmMarker.prototype, "opacity", void 0);
+    __decorate$14([
+        _angular_core.Input(),
+        __metadata$13("design:type", Number)
+    ], AgmMarker.prototype, "zIndex", void 0);
+    __decorate$14([
+        _angular_core.Output(),
+        __metadata$13("design:type", _angular_core.EventEmitter)
+    ], AgmMarker.prototype, "markerClick", void 0);
+    __decorate$14([
+        _angular_core.Output(),
+        __metadata$13("design:type", _angular_core.EventEmitter)
+    ], AgmMarker.prototype, "dragEnd", void 0);
+    __decorate$14([
+        _angular_core.Output(),
+        __metadata$13("design:type", _angular_core.EventEmitter)
+    ], AgmMarker.prototype, "mouseOver", void 0);
+    __decorate$14([
+        _angular_core.Output(),
+        __metadata$13("design:type", _angular_core.EventEmitter)
+    ], AgmMarker.prototype, "mouseOut", void 0);
+    __decorate$14([
+        _angular_core.ContentChildren(AgmInfoWindow),
+        __metadata$13("design:type", _angular_core.QueryList)
+    ], AgmMarker.prototype, "infoWindow", void 0);
+    AgmMarker = __decorate$14([
+        _angular_core.Directive({
+            selector: 'agm-marker'
+        }),
+        __metadata$13("design:paramtypes", [MarkerManager])
+    ], AgmMarker);
     return AgmMarker;
 }());
-AgmMarker.decorators = [
-    { type: _angular_core.Directive, args: [{
-                selector: 'agm-marker'
-            },] },
-];
-/** @nocollapse */
-AgmMarker.ctorParameters = function () { return [
-    { type: MarkerManager, },
-]; };
-AgmMarker.propDecorators = {
-    'latitude': [{ type: _angular_core.Input },],
-    'longitude': [{ type: _angular_core.Input },],
-    'title': [{ type: _angular_core.Input },],
-    'label': [{ type: _angular_core.Input },],
-    'draggable': [{ type: _angular_core.Input, args: ['markerDraggable',] },],
-    'iconUrl': [{ type: _angular_core.Input },],
-    'visible': [{ type: _angular_core.Input },],
-    'openInfoWindow': [{ type: _angular_core.Input },],
-    'opacity': [{ type: _angular_core.Input },],
-    'zIndex': [{ type: _angular_core.Input },],
-    'markerClick': [{ type: _angular_core.Output },],
-    'dragEnd': [{ type: _angular_core.Output },],
-    'mouseOver': [{ type: _angular_core.Output },],
-    'mouseOut': [{ type: _angular_core.Output },],
-    'infoWindow': [{ type: _angular_core.ContentChildren, args: [AgmInfoWindow,] },],
-};
 
+var __decorate$15 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$14 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 /**
  * AgmPolygon renders a polygon on a {@link AgmMap}
  *
@@ -2520,7 +2948,7 @@ AgmMarker.propDecorators = {
  * }
  * ```
  */
-var AgmPolygon = (function () {
+var AgmPolygon = /** @class */ (function () {
     // private _listeners: Subscription[] = [];
     function AgmPolygon(_polygonManager) {
         this._polygonManager = _polygonManager;
@@ -2611,6 +3039,7 @@ var AgmPolygon = (function () {
         this._isDragging = false;
         this._subscriptions = [];
     }
+    AgmPolygon_1 = AgmPolygon;
     /** @internal */
     AgmPolygon.prototype.ngAfterContentInit = function () {
         if (!this._polygonAddedToManager) {
@@ -2737,7 +3166,7 @@ var AgmPolygon = (function () {
     AgmPolygon.prototype._updatePolygonOptions = function (changes) {
         this._removeEventListeners();
         return Object.keys(changes)
-            .filter(function (k) { return AgmPolygon._polygonOptionsAttributes.indexOf(k) !== -1; })
+            .filter(function (k) { return AgmPolygon_1._polygonOptionsAttributes.indexOf(k) !== -1; })
             .reduce(function (obj, k) {
             obj[k] = changes[k].currentValue;
             return obj;
@@ -2754,65 +3183,142 @@ var AgmPolygon = (function () {
         this._subscriptions.forEach(function (s) { return s.unsubscribe(); });
         // this._listeners.forEach((listeners) => s.unsubscribe());
     };
+    var AgmPolygon_1;
+    AgmPolygon._polygonOptionsAttributes = [
+        "clickable",
+        "draggable",
+        "editable",
+        "fillColor",
+        "fillOpacity",
+        "geodesic",
+        "icon",
+        "map",
+        "paths",
+        "strokeColor",
+        "strokeOpacity",
+        "strokeWeight",
+        "visible",
+        "zIndex"
+    ];
+    __decorate$15([
+        _angular_core.Input(),
+        __metadata$14("design:type", Boolean)
+    ], AgmPolygon.prototype, "clickable", void 0);
+    __decorate$15([
+        _angular_core.Input("polyDraggable"),
+        __metadata$14("design:type", Boolean)
+    ], AgmPolygon.prototype, "draggable", void 0);
+    __decorate$15([
+        _angular_core.Input(),
+        __metadata$14("design:type", Boolean)
+    ], AgmPolygon.prototype, "editable", void 0);
+    __decorate$15([
+        _angular_core.Input(),
+        __metadata$14("design:type", String)
+    ], AgmPolygon.prototype, "fillColor", void 0);
+    __decorate$15([
+        _angular_core.Input(),
+        __metadata$14("design:type", Number)
+    ], AgmPolygon.prototype, "fillOpacity", void 0);
+    __decorate$15([
+        _angular_core.Input(),
+        __metadata$14("design:type", Boolean)
+    ], AgmPolygon.prototype, "geodesic", void 0);
+    __decorate$15([
+        _angular_core.Input(),
+        __metadata$14("design:type", Array)
+    ], AgmPolygon.prototype, "paths", void 0);
+    __decorate$15([
+        _angular_core.Input(),
+        __metadata$14("design:type", String)
+    ], AgmPolygon.prototype, "strokeColor", void 0);
+    __decorate$15([
+        _angular_core.Input(),
+        __metadata$14("design:type", Number)
+    ], AgmPolygon.prototype, "strokeOpacity", void 0);
+    __decorate$15([
+        _angular_core.Input(),
+        __metadata$14("design:type", Number)
+    ], AgmPolygon.prototype, "strokeWeight", void 0);
+    __decorate$15([
+        _angular_core.Input(),
+        __metadata$14("design:type", Boolean)
+    ], AgmPolygon.prototype, "visible", void 0);
+    __decorate$15([
+        _angular_core.Input(),
+        __metadata$14("design:type", Number)
+    ], AgmPolygon.prototype, "zIndex", void 0);
+    __decorate$15([
+        _angular_core.Output(),
+        __metadata$14("design:type", _angular_core.EventEmitter)
+    ], AgmPolygon.prototype, "polyClick", void 0);
+    __decorate$15([
+        _angular_core.Output(),
+        __metadata$14("design:type", _angular_core.EventEmitter)
+    ], AgmPolygon.prototype, "polyDblClick", void 0);
+    __decorate$15([
+        _angular_core.Output(),
+        __metadata$14("design:type", _angular_core.EventEmitter)
+    ], AgmPolygon.prototype, "polyDrag", void 0);
+    __decorate$15([
+        _angular_core.Output(),
+        __metadata$14("design:type", _angular_core.EventEmitter)
+    ], AgmPolygon.prototype, "polyDragEnd", void 0);
+    __decorate$15([
+        _angular_core.Output(),
+        __metadata$14("design:type", _angular_core.EventEmitter)
+    ], AgmPolygon.prototype, "polyDragStart", void 0);
+    __decorate$15([
+        _angular_core.Output(),
+        __metadata$14("design:type", _angular_core.EventEmitter)
+    ], AgmPolygon.prototype, "polyMouseDown", void 0);
+    __decorate$15([
+        _angular_core.Output(),
+        __metadata$14("design:type", _angular_core.EventEmitter)
+    ], AgmPolygon.prototype, "polyMouseMove", void 0);
+    __decorate$15([
+        _angular_core.Output(),
+        __metadata$14("design:type", _angular_core.EventEmitter)
+    ], AgmPolygon.prototype, "polyMouseOut", void 0);
+    __decorate$15([
+        _angular_core.Output(),
+        __metadata$14("design:type", _angular_core.EventEmitter)
+    ], AgmPolygon.prototype, "polyMouseOver", void 0);
+    __decorate$15([
+        _angular_core.Output(),
+        __metadata$14("design:type", _angular_core.EventEmitter)
+    ], AgmPolygon.prototype, "polyMouseUp", void 0);
+    __decorate$15([
+        _angular_core.Output(),
+        __metadata$14("design:type", _angular_core.EventEmitter)
+    ], AgmPolygon.prototype, "polyRightClick", void 0);
+    __decorate$15([
+        _angular_core.Output(),
+        __metadata$14("design:type", _angular_core.EventEmitter)
+    ], AgmPolygon.prototype, "changedShape", void 0);
+    AgmPolygon = AgmPolygon_1 = __decorate$15([
+        _angular_core.Directive({
+            selector: "agm-polygon"
+        }),
+        __metadata$14("design:paramtypes", [PolygonManager])
+    ], AgmPolygon);
     return AgmPolygon;
 }());
-AgmPolygon._polygonOptionsAttributes = [
-    "clickable",
-    "draggable",
-    "editable",
-    "fillColor",
-    "fillOpacity",
-    "geodesic",
-    "icon",
-    "map",
-    "paths",
-    "strokeColor",
-    "strokeOpacity",
-    "strokeWeight",
-    "visible",
-    "zIndex"
-];
-AgmPolygon.decorators = [
-    { type: _angular_core.Directive, args: [{
-                selector: "agm-polygon"
-            },] },
-];
-/** @nocollapse */
-AgmPolygon.ctorParameters = function () { return [
-    { type: PolygonManager, },
-]; };
-AgmPolygon.propDecorators = {
-    'clickable': [{ type: _angular_core.Input },],
-    'draggable': [{ type: _angular_core.Input, args: ["polyDraggable",] },],
-    'editable': [{ type: _angular_core.Input },],
-    'fillColor': [{ type: _angular_core.Input },],
-    'fillOpacity': [{ type: _angular_core.Input },],
-    'geodesic': [{ type: _angular_core.Input },],
-    'paths': [{ type: _angular_core.Input },],
-    'strokeColor': [{ type: _angular_core.Input },],
-    'strokeOpacity': [{ type: _angular_core.Input },],
-    'strokeWeight': [{ type: _angular_core.Input },],
-    'visible': [{ type: _angular_core.Input },],
-    'zIndex': [{ type: _angular_core.Input },],
-    'polyClick': [{ type: _angular_core.Output },],
-    'polyDblClick': [{ type: _angular_core.Output },],
-    'polyDrag': [{ type: _angular_core.Output },],
-    'polyDragEnd': [{ type: _angular_core.Output },],
-    'polyDragStart': [{ type: _angular_core.Output },],
-    'polyMouseDown': [{ type: _angular_core.Output },],
-    'polyMouseMove': [{ type: _angular_core.Output },],
-    'polyMouseOut': [{ type: _angular_core.Output },],
-    'polyMouseOver': [{ type: _angular_core.Output },],
-    'polyMouseUp': [{ type: _angular_core.Output },],
-    'polyRightClick': [{ type: _angular_core.Output },],
-    'changedShape': [{ type: _angular_core.Output },],
-};
 
+var __decorate$17 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$16 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 /**
  * AgmPolylinePoint represents one element of a polyline within a  {@link
  * SembGoogleMapPolyline}
  */
-var AgmPolylinePoint = (function () {
+var AgmPolylinePoint = /** @class */ (function () {
     function AgmPolylinePoint() {
         /**
          * This event emitter gets emitted when the position of the point changed.
@@ -2828,19 +3334,34 @@ var AgmPolylinePoint = (function () {
             this.positionChanged.emit(position);
         }
     };
+    __decorate$17([
+        _angular_core.Input(),
+        __metadata$16("design:type", Number)
+    ], AgmPolylinePoint.prototype, "latitude", void 0);
+    __decorate$17([
+        _angular_core.Input(),
+        __metadata$16("design:type", Number)
+    ], AgmPolylinePoint.prototype, "longitude", void 0);
+    __decorate$17([
+        _angular_core.Output(),
+        __metadata$16("design:type", _angular_core.EventEmitter)
+    ], AgmPolylinePoint.prototype, "positionChanged", void 0);
+    AgmPolylinePoint = __decorate$17([
+        _angular_core.Directive({ selector: 'agm-polyline-point' }),
+        __metadata$16("design:paramtypes", [])
+    ], AgmPolylinePoint);
     return AgmPolylinePoint;
 }());
-AgmPolylinePoint.decorators = [
-    { type: _angular_core.Directive, args: [{ selector: 'agm-polyline-point' },] },
-];
-/** @nocollapse */
-AgmPolylinePoint.ctorParameters = function () { return []; };
-AgmPolylinePoint.propDecorators = {
-    'latitude': [{ type: _angular_core.Input },],
-    'longitude': [{ type: _angular_core.Input },],
-    'positionChanged': [{ type: _angular_core.Output },],
-};
 
+var __decorate$16 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$15 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 var polylineId = 0;
 /**
  * AgmPolyline renders a polyline on a {@link AgmMap}
@@ -2869,7 +3390,7 @@ var polylineId = 0;
  * })
  * ```
  */
-var AgmPolyline = (function () {
+var AgmPolyline = /** @class */ (function () {
     function AgmPolyline(_polylineManager) {
         this._polylineManager = _polylineManager;
         /**
@@ -2946,6 +3467,7 @@ var AgmPolyline = (function () {
         this._subscriptions = [];
         this._id = (polylineId++).toString();
     }
+    AgmPolyline_1 = AgmPolyline;
     /** @internal */
     AgmPolyline.prototype.ngAfterContentInit = function () {
         var _this = this;
@@ -2968,7 +3490,7 @@ var AgmPolyline = (function () {
             return;
         }
         var options = {};
-        var optionKeys = Object.keys(changes).filter(function (k) { return AgmPolyline._polylineOptionsAttributes.indexOf(k) !== -1; });
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmPolyline_1._polylineOptionsAttributes.indexOf(k) !== -1; });
         optionKeys.forEach(function (k) { return options[k] = changes[k].currentValue; });
         this._polylineManager.setPolylineOptions(this, options);
     };
@@ -3012,52 +3534,111 @@ var AgmPolyline = (function () {
         // unsubscribe all registered observable subscriptions
         this._subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
+    var AgmPolyline_1;
+    AgmPolyline._polylineOptionsAttributes = [
+        'draggable', 'editable', 'visible', 'geodesic', 'strokeColor', 'strokeOpacity', 'strokeWeight',
+        'zIndex'
+    ];
+    __decorate$16([
+        _angular_core.Input(),
+        __metadata$15("design:type", Boolean)
+    ], AgmPolyline.prototype, "clickable", void 0);
+    __decorate$16([
+        _angular_core.Input('polylineDraggable'),
+        __metadata$15("design:type", Boolean)
+    ], AgmPolyline.prototype, "draggable", void 0);
+    __decorate$16([
+        _angular_core.Input(),
+        __metadata$15("design:type", Boolean)
+    ], AgmPolyline.prototype, "editable", void 0);
+    __decorate$16([
+        _angular_core.Input(),
+        __metadata$15("design:type", Boolean)
+    ], AgmPolyline.prototype, "geodesic", void 0);
+    __decorate$16([
+        _angular_core.Input(),
+        __metadata$15("design:type", String)
+    ], AgmPolyline.prototype, "strokeColor", void 0);
+    __decorate$16([
+        _angular_core.Input(),
+        __metadata$15("design:type", Number)
+    ], AgmPolyline.prototype, "strokeOpacity", void 0);
+    __decorate$16([
+        _angular_core.Input(),
+        __metadata$15("design:type", Number)
+    ], AgmPolyline.prototype, "strokeWeight", void 0);
+    __decorate$16([
+        _angular_core.Input(),
+        __metadata$15("design:type", Boolean)
+    ], AgmPolyline.prototype, "visible", void 0);
+    __decorate$16([
+        _angular_core.Input(),
+        __metadata$15("design:type", Number)
+    ], AgmPolyline.prototype, "zIndex", void 0);
+    __decorate$16([
+        _angular_core.Output(),
+        __metadata$15("design:type", _angular_core.EventEmitter)
+    ], AgmPolyline.prototype, "lineClick", void 0);
+    __decorate$16([
+        _angular_core.Output(),
+        __metadata$15("design:type", _angular_core.EventEmitter)
+    ], AgmPolyline.prototype, "lineDblClick", void 0);
+    __decorate$16([
+        _angular_core.Output(),
+        __metadata$15("design:type", _angular_core.EventEmitter)
+    ], AgmPolyline.prototype, "lineDrag", void 0);
+    __decorate$16([
+        _angular_core.Output(),
+        __metadata$15("design:type", _angular_core.EventEmitter)
+    ], AgmPolyline.prototype, "lineDragEnd", void 0);
+    __decorate$16([
+        _angular_core.Output(),
+        __metadata$15("design:type", _angular_core.EventEmitter)
+    ], AgmPolyline.prototype, "lineDragStart", void 0);
+    __decorate$16([
+        _angular_core.Output(),
+        __metadata$15("design:type", _angular_core.EventEmitter)
+    ], AgmPolyline.prototype, "lineMouseDown", void 0);
+    __decorate$16([
+        _angular_core.Output(),
+        __metadata$15("design:type", _angular_core.EventEmitter)
+    ], AgmPolyline.prototype, "lineMouseMove", void 0);
+    __decorate$16([
+        _angular_core.Output(),
+        __metadata$15("design:type", _angular_core.EventEmitter)
+    ], AgmPolyline.prototype, "lineMouseOut", void 0);
+    __decorate$16([
+        _angular_core.Output(),
+        __metadata$15("design:type", _angular_core.EventEmitter)
+    ], AgmPolyline.prototype, "lineMouseOver", void 0);
+    __decorate$16([
+        _angular_core.Output(),
+        __metadata$15("design:type", _angular_core.EventEmitter)
+    ], AgmPolyline.prototype, "lineMouseUp", void 0);
+    __decorate$16([
+        _angular_core.Output(),
+        __metadata$15("design:type", _angular_core.EventEmitter)
+    ], AgmPolyline.prototype, "lineRightClick", void 0);
+    __decorate$16([
+        _angular_core.ContentChildren(AgmPolylinePoint),
+        __metadata$15("design:type", _angular_core.QueryList)
+    ], AgmPolyline.prototype, "points", void 0);
+    AgmPolyline = AgmPolyline_1 = __decorate$16([
+        _angular_core.Directive({
+            selector: 'agm-polyline'
+        }),
+        __metadata$15("design:paramtypes", [PolylineManager])
+    ], AgmPolyline);
     return AgmPolyline;
 }());
-AgmPolyline._polylineOptionsAttributes = [
-    'draggable', 'editable', 'visible', 'geodesic', 'strokeColor', 'strokeOpacity', 'strokeWeight',
-    'zIndex'
-];
-AgmPolyline.decorators = [
-    { type: _angular_core.Directive, args: [{
-                selector: 'agm-polyline'
-            },] },
-];
-/** @nocollapse */
-AgmPolyline.ctorParameters = function () { return [
-    { type: PolylineManager, },
-]; };
-AgmPolyline.propDecorators = {
-    'clickable': [{ type: _angular_core.Input },],
-    'draggable': [{ type: _angular_core.Input, args: ['polylineDraggable',] },],
-    'editable': [{ type: _angular_core.Input },],
-    'geodesic': [{ type: _angular_core.Input },],
-    'strokeColor': [{ type: _angular_core.Input },],
-    'strokeOpacity': [{ type: _angular_core.Input },],
-    'strokeWeight': [{ type: _angular_core.Input },],
-    'visible': [{ type: _angular_core.Input },],
-    'zIndex': [{ type: _angular_core.Input },],
-    'lineClick': [{ type: _angular_core.Output },],
-    'lineDblClick': [{ type: _angular_core.Output },],
-    'lineDrag': [{ type: _angular_core.Output },],
-    'lineDragEnd': [{ type: _angular_core.Output },],
-    'lineDragStart': [{ type: _angular_core.Output },],
-    'lineMouseDown': [{ type: _angular_core.Output },],
-    'lineMouseMove': [{ type: _angular_core.Output },],
-    'lineMouseOut': [{ type: _angular_core.Output },],
-    'lineMouseOver': [{ type: _angular_core.Output },],
-    'lineMouseUp': [{ type: _angular_core.Output },],
-    'lineRightClick': [{ type: _angular_core.Output },],
-    'points': [{ type: _angular_core.ContentChildren, args: [AgmPolylinePoint,] },],
-};
 
-var WindowRef = (function () {
+var WindowRef = /** @class */ (function () {
     function WindowRef() {
     }
     WindowRef.prototype.getNativeWindow = function () { return window; };
     return WindowRef;
 }());
-var DocumentRef = (function () {
+var DocumentRef = /** @class */ (function () {
     function DocumentRef() {
     }
     DocumentRef.prototype.getNativeDocument = function () { return document; };
@@ -3066,15 +3647,30 @@ var DocumentRef = (function () {
 var BROWSER_GLOBALS_PROVIDERS = [WindowRef, DocumentRef];
 
 var __extends = (window && window.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __decorate$18 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata$17 = (window && window.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (window && window.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 
 (function (GoogleMapsScriptProtocol) {
     GoogleMapsScriptProtocol[GoogleMapsScriptProtocol["HTTP"] = 1] = "HTTP";
@@ -3086,7 +3682,7 @@ var __extends = (window && window.__extends) || (function () {
  * LazyMapsAPILoaderConfig}.
  */
 var LAZY_MAPS_API_CONFIG = new _angular_core.InjectionToken('angular-google-maps LAZY_MAPS_API_CONFIG');
-var LazyMapsAPILoader = (function (_super) {
+var LazyMapsAPILoader = /** @class */ (function (_super) {
     __extends(LazyMapsAPILoader, _super);
     function LazyMapsAPILoader(config, w, d) {
         var _this = _super.call(this) || this;
@@ -3174,17 +3770,13 @@ var LazyMapsAPILoader = (function (_super) {
             .join('&');
         return protocol + "//" + hostAndPath + "?" + params;
     };
+    LazyMapsAPILoader = __decorate$18([
+        _angular_core.Injectable(),
+        __param(0, _angular_core.Inject(LAZY_MAPS_API_CONFIG)),
+        __metadata$17("design:paramtypes", [Object, WindowRef, DocumentRef])
+    ], LazyMapsAPILoader);
     return LazyMapsAPILoader;
 }(MapsAPILoader));
-LazyMapsAPILoader.decorators = [
-    { type: _angular_core.Injectable },
-];
-/** @nocollapse */
-LazyMapsAPILoader.ctorParameters = function () { return [
-    { type: undefined, decorators: [{ type: _angular_core.Inject, args: [LAZY_MAPS_API_CONFIG,] },] },
-    { type: WindowRef, },
-    { type: DocumentRef, },
-]; };
 
 /**
  * When using the NoOpMapsAPILoader, the Google Maps API must be added to the page via a `<script>`
@@ -3192,7 +3784,7 @@ LazyMapsAPILoader.ctorParameters = function () { return [
  * It's important that the Google Maps API script gets loaded first on the page.
  */
 var LAZY_MAPS_API_CONFIG$1 = new _angular_core.InjectionToken('angular-google-maps LAZY_MAPS_API_CONFIG');
-var NoOpMapsAPILoader = (function () {
+var NoOpMapsAPILoader = /** @class */ (function () {
     function NoOpMapsAPILoader() {
     }
     NoOpMapsAPILoader.prototype.load = function () {
@@ -3208,6 +3800,12 @@ var NoOpMapsAPILoader = (function () {
     return NoOpMapsAPILoader;
 }());
 
+var __decorate$19 = (window && window.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 /**
  * @internal
  */
@@ -3223,28 +3821,28 @@ function coreDirectives() {
  * The angular-google-maps core module. Contains all Directives/Services/Pipes
  * of the core module. Please use `AgmCoreModule.forRoot()` in your app module.
  */
-var AgmCoreModule = (function () {
+var AgmCoreModule = /** @class */ (function () {
     function AgmCoreModule() {
     }
+    AgmCoreModule_1 = AgmCoreModule;
     /**
      * Please use this method when you register the module at the root level.
      */
     AgmCoreModule.forRoot = function (lazyMapsAPILoaderConfig) {
         return {
-            ngModule: AgmCoreModule,
+            ngModule: AgmCoreModule_1,
             providers: BROWSER_GLOBALS_PROVIDERS.concat([
                 { provide: MapsAPILoader, useClass: LazyMapsAPILoader },
                 { provide: LAZY_MAPS_API_CONFIG, useValue: lazyMapsAPILoaderConfig }
             ]),
         };
     };
+    var AgmCoreModule_1;
+    AgmCoreModule = AgmCoreModule_1 = __decorate$19([
+        _angular_core.NgModule({ declarations: coreDirectives(), exports: coreDirectives() })
+    ], AgmCoreModule);
     return AgmCoreModule;
 }());
-AgmCoreModule.decorators = [
-    { type: _angular_core.NgModule, args: [{ declarations: coreDirectives(), exports: coreDirectives() },] },
-];
-/** @nocollapse */
-AgmCoreModule.ctorParameters = function () { return []; };
 
 // main modules
 

@@ -1,4 +1,13 @@
-import { ContentChildren, Directive, EventEmitter, Input, Output } from '@angular/core';
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+import { ContentChildren, Directive, EventEmitter, QueryList, Input, Output } from '@angular/core';
 import { PolylineManager } from '../services/managers/polyline-manager';
 import { AgmPolylinePoint } from './polyline-point';
 var polylineId = 0;
@@ -29,7 +38,7 @@ var polylineId = 0;
  * })
  * ```
  */
-var AgmPolyline = (function () {
+var AgmPolyline = /** @class */ (function () {
     function AgmPolyline(_polylineManager) {
         this._polylineManager = _polylineManager;
         /**
@@ -106,6 +115,7 @@ var AgmPolyline = (function () {
         this._subscriptions = [];
         this._id = (polylineId++).toString();
     }
+    AgmPolyline_1 = AgmPolyline;
     /** @internal */
     AgmPolyline.prototype.ngAfterContentInit = function () {
         var _this = this;
@@ -128,7 +138,7 @@ var AgmPolyline = (function () {
             return;
         }
         var options = {};
-        var optionKeys = Object.keys(changes).filter(function (k) { return AgmPolyline._polylineOptionsAttributes.indexOf(k) !== -1; });
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmPolyline_1._polylineOptionsAttributes.indexOf(k) !== -1; });
         optionKeys.forEach(function (k) { return options[k] = changes[k].currentValue; });
         this._polylineManager.setPolylineOptions(this, options);
     };
@@ -172,43 +182,102 @@ var AgmPolyline = (function () {
         // unsubscribe all registered observable subscriptions
         this._subscriptions.forEach(function (s) { return s.unsubscribe(); });
     };
+    var AgmPolyline_1;
+    AgmPolyline._polylineOptionsAttributes = [
+        'draggable', 'editable', 'visible', 'geodesic', 'strokeColor', 'strokeOpacity', 'strokeWeight',
+        'zIndex'
+    ];
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmPolyline.prototype, "clickable", void 0);
+    __decorate([
+        Input('polylineDraggable'),
+        __metadata("design:type", Boolean)
+    ], AgmPolyline.prototype, "draggable", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmPolyline.prototype, "editable", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmPolyline.prototype, "geodesic", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmPolyline.prototype, "strokeColor", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmPolyline.prototype, "strokeOpacity", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmPolyline.prototype, "strokeWeight", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmPolyline.prototype, "visible", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmPolyline.prototype, "zIndex", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolyline.prototype, "lineClick", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolyline.prototype, "lineDblClick", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolyline.prototype, "lineDrag", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolyline.prototype, "lineDragEnd", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolyline.prototype, "lineDragStart", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolyline.prototype, "lineMouseDown", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolyline.prototype, "lineMouseMove", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolyline.prototype, "lineMouseOut", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolyline.prototype, "lineMouseOver", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolyline.prototype, "lineMouseUp", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolyline.prototype, "lineRightClick", void 0);
+    __decorate([
+        ContentChildren(AgmPolylinePoint),
+        __metadata("design:type", QueryList)
+    ], AgmPolyline.prototype, "points", void 0);
+    AgmPolyline = AgmPolyline_1 = __decorate([
+        Directive({
+            selector: 'agm-polyline'
+        }),
+        __metadata("design:paramtypes", [PolylineManager])
+    ], AgmPolyline);
     return AgmPolyline;
 }());
 export { AgmPolyline };
-AgmPolyline._polylineOptionsAttributes = [
-    'draggable', 'editable', 'visible', 'geodesic', 'strokeColor', 'strokeOpacity', 'strokeWeight',
-    'zIndex'
-];
-AgmPolyline.decorators = [
-    { type: Directive, args: [{
-                selector: 'agm-polyline'
-            },] },
-];
-/** @nocollapse */
-AgmPolyline.ctorParameters = function () { return [
-    { type: PolylineManager, },
-]; };
-AgmPolyline.propDecorators = {
-    'clickable': [{ type: Input },],
-    'draggable': [{ type: Input, args: ['polylineDraggable',] },],
-    'editable': [{ type: Input },],
-    'geodesic': [{ type: Input },],
-    'strokeColor': [{ type: Input },],
-    'strokeOpacity': [{ type: Input },],
-    'strokeWeight': [{ type: Input },],
-    'visible': [{ type: Input },],
-    'zIndex': [{ type: Input },],
-    'lineClick': [{ type: Output },],
-    'lineDblClick': [{ type: Output },],
-    'lineDrag': [{ type: Output },],
-    'lineDragEnd': [{ type: Output },],
-    'lineDragStart': [{ type: Output },],
-    'lineMouseDown': [{ type: Output },],
-    'lineMouseMove': [{ type: Output },],
-    'lineMouseOut': [{ type: Output },],
-    'lineMouseOver': [{ type: Output },],
-    'lineMouseUp': [{ type: Output },],
-    'lineRightClick': [{ type: Output },],
-    'points': [{ type: ContentChildren, args: [AgmPolylinePoint,] },],
-};
 //# sourceMappingURL=polyline.js.map

@@ -22,10 +22,6 @@
     "url": "https://github.com/SebastianM/angular-google-maps/issues"
   },
   "homepage": "https://angular-maps.com",
-  "peerDependencies": {
-    "@angular/common": "^4.0.0 || ^2.0.0",
-    "@angular/core": "^4.0.0 || ^2.0.0"
-  },
   "jspm": {
     "jspmNodeConversion": false,
     "dependencies": {

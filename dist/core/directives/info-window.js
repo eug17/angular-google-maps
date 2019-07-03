@@ -1,3 +1,12 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 import { Component, ElementRef, EventEmitter, Output, Input } from '@angular/core';
 import { InfoWindowManager } from '../services/managers/info-window-manager';
 var infoWindowId = 0;
@@ -27,7 +36,7 @@ var infoWindowId = 0;
  * })
  * ```
  */
-var AgmInfoWindow = (function () {
+var AgmInfoWindow = /** @class */ (function () {
     function AgmInfoWindow(_infoWindowManager, _el) {
         this._infoWindowManager = _infoWindowManager;
         this._el = _el;
@@ -42,6 +51,7 @@ var AgmInfoWindow = (function () {
         this._infoWindowAddedToManager = false;
         this._id = (infoWindowId++).toString();
     }
+    AgmInfoWindow_1 = AgmInfoWindow;
     AgmInfoWindow.prototype.ngOnInit = function () {
         this.content = this._el.nativeElement.querySelector('.agm-info-window-content');
         this._infoWindowManager.addInfoWindow(this);
@@ -78,7 +88,7 @@ var AgmInfoWindow = (function () {
     };
     AgmInfoWindow.prototype._setInfoWindowOptions = function (changes) {
         var options = {};
-        var optionKeys = Object.keys(changes).filter(function (k) { return AgmInfoWindow._infoWindowOptionsInputs.indexOf(k) !== -1; });
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmInfoWindow_1._infoWindowOptionsInputs.indexOf(k) !== -1; });
         optionKeys.forEach(function (k) { options[k] = changes[k].currentValue; });
         this._infoWindowManager.setOptions(this, options);
     };
@@ -99,28 +109,44 @@ var AgmInfoWindow = (function () {
     AgmInfoWindow.prototype.toString = function () { return 'AgmInfoWindow-' + this._id.toString(); };
     /** @internal */
     AgmInfoWindow.prototype.ngOnDestroy = function () { this._infoWindowManager.deleteInfoWindow(this); };
+    var AgmInfoWindow_1;
+    AgmInfoWindow._infoWindowOptionsInputs = ['disableAutoPan', 'maxWidth'];
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmInfoWindow.prototype, "latitude", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmInfoWindow.prototype, "longitude", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmInfoWindow.prototype, "disableAutoPan", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmInfoWindow.prototype, "zIndex", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmInfoWindow.prototype, "maxWidth", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmInfoWindow.prototype, "isOpen", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmInfoWindow.prototype, "infoWindowClose", void 0);
+    AgmInfoWindow = AgmInfoWindow_1 = __decorate([
+        Component({
+            selector: 'agm-info-window',
+            template: "<div class='agm-info-window-content'>\n      <ng-content></ng-content>\n    </div>\n  "
+        }),
+        __metadata("design:paramtypes", [InfoWindowManager, ElementRef])
+    ], AgmInfoWindow);
     return AgmInfoWindow;
 }());
 export { AgmInfoWindow };
-AgmInfoWindow._infoWindowOptionsInputs = ['disableAutoPan', 'maxWidth'];
-AgmInfoWindow.decorators = [
-    { type: Component, args: [{
-                selector: 'agm-info-window',
-                template: "<div class='agm-info-window-content'>\n      <ng-content></ng-content>\n    </div>\n  "
-            },] },
-];
-/** @nocollapse */
-AgmInfoWindow.ctorParameters = function () { return [
-    { type: InfoWindowManager, },
-    { type: ElementRef, },
-]; };
-AgmInfoWindow.propDecorators = {
-    'latitude': [{ type: Input },],
-    'longitude': [{ type: Input },],
-    'disableAutoPan': [{ type: Input },],
-    'zIndex': [{ type: Input },],
-    'maxWidth': [{ type: Input },],
-    'isOpen': [{ type: Input },],
-    'infoWindowClose': [{ type: Output },],
-};
 //# sourceMappingURL=info-window.js.map

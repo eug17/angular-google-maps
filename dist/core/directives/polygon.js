@@ -1,3 +1,12 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 import { Directive, EventEmitter, Input, Output } from "@angular/core";
 import { PolygonManager } from "../services/managers/polygon-manager";
 /**
@@ -49,7 +58,7 @@ import { PolygonManager } from "../services/managers/polygon-manager";
  * }
  * ```
  */
-var AgmPolygon = (function () {
+var AgmPolygon = /** @class */ (function () {
     // private _listeners: Subscription[] = [];
     function AgmPolygon(_polygonManager) {
         this._polygonManager = _polygonManager;
@@ -140,6 +149,7 @@ var AgmPolygon = (function () {
         this._isDragging = false;
         this._subscriptions = [];
     }
+    AgmPolygon_1 = AgmPolygon;
     /** @internal */
     AgmPolygon.prototype.ngAfterContentInit = function () {
         if (!this._polygonAddedToManager) {
@@ -266,7 +276,7 @@ var AgmPolygon = (function () {
     AgmPolygon.prototype._updatePolygonOptions = function (changes) {
         this._removeEventListeners();
         return Object.keys(changes)
-            .filter(function (k) { return AgmPolygon._polygonOptionsAttributes.indexOf(k) !== -1; })
+            .filter(function (k) { return AgmPolygon_1._polygonOptionsAttributes.indexOf(k) !== -1; })
             .reduce(function (obj, k) {
             obj[k] = changes[k].currentValue;
             return obj;
@@ -283,58 +293,126 @@ var AgmPolygon = (function () {
         this._subscriptions.forEach(function (s) { return s.unsubscribe(); });
         // this._listeners.forEach((listeners) => s.unsubscribe());
     };
+    var AgmPolygon_1;
+    AgmPolygon._polygonOptionsAttributes = [
+        "clickable",
+        "draggable",
+        "editable",
+        "fillColor",
+        "fillOpacity",
+        "geodesic",
+        "icon",
+        "map",
+        "paths",
+        "strokeColor",
+        "strokeOpacity",
+        "strokeWeight",
+        "visible",
+        "zIndex"
+    ];
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmPolygon.prototype, "clickable", void 0);
+    __decorate([
+        Input("polyDraggable"),
+        __metadata("design:type", Boolean)
+    ], AgmPolygon.prototype, "draggable", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmPolygon.prototype, "editable", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmPolygon.prototype, "fillColor", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmPolygon.prototype, "fillOpacity", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmPolygon.prototype, "geodesic", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], AgmPolygon.prototype, "paths", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmPolygon.prototype, "strokeColor", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmPolygon.prototype, "strokeOpacity", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmPolygon.prototype, "strokeWeight", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmPolygon.prototype, "visible", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmPolygon.prototype, "zIndex", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolygon.prototype, "polyClick", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolygon.prototype, "polyDblClick", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolygon.prototype, "polyDrag", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolygon.prototype, "polyDragEnd", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolygon.prototype, "polyDragStart", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolygon.prototype, "polyMouseDown", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolygon.prototype, "polyMouseMove", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolygon.prototype, "polyMouseOut", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolygon.prototype, "polyMouseOver", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolygon.prototype, "polyMouseUp", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolygon.prototype, "polyRightClick", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmPolygon.prototype, "changedShape", void 0);
+    AgmPolygon = AgmPolygon_1 = __decorate([
+        Directive({
+            selector: "agm-polygon"
+        }),
+        __metadata("design:paramtypes", [PolygonManager])
+    ], AgmPolygon);
     return AgmPolygon;
 }());
 export { AgmPolygon };
-AgmPolygon._polygonOptionsAttributes = [
-    "clickable",
-    "draggable",
-    "editable",
-    "fillColor",
-    "fillOpacity",
-    "geodesic",
-    "icon",
-    "map",
-    "paths",
-    "strokeColor",
-    "strokeOpacity",
-    "strokeWeight",
-    "visible",
-    "zIndex"
-];
-AgmPolygon.decorators = [
-    { type: Directive, args: [{
-                selector: "agm-polygon"
-            },] },
-];
-/** @nocollapse */
-AgmPolygon.ctorParameters = function () { return [
-    { type: PolygonManager, },
-]; };
-AgmPolygon.propDecorators = {
-    'clickable': [{ type: Input },],
-    'draggable': [{ type: Input, args: ["polyDraggable",] },],
-    'editable': [{ type: Input },],
-    'fillColor': [{ type: Input },],
-    'fillOpacity': [{ type: Input },],
-    'geodesic': [{ type: Input },],
-    'paths': [{ type: Input },],
-    'strokeColor': [{ type: Input },],
-    'strokeOpacity': [{ type: Input },],
-    'strokeWeight': [{ type: Input },],
-    'visible': [{ type: Input },],
-    'zIndex': [{ type: Input },],
-    'polyClick': [{ type: Output },],
-    'polyDblClick': [{ type: Output },],
-    'polyDrag': [{ type: Output },],
-    'polyDragEnd': [{ type: Output },],
-    'polyDragStart': [{ type: Output },],
-    'polyMouseDown': [{ type: Output },],
-    'polyMouseMove': [{ type: Output },],
-    'polyMouseOut': [{ type: Output },],
-    'polyMouseOver': [{ type: Output },],
-    'polyMouseUp': [{ type: Output },],
-    'polyRightClick': [{ type: Output },],
-    'changedShape': [{ type: Output },],
-};
 //# sourceMappingURL=polygon.js.map

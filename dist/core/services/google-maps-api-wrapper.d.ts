@@ -1,5 +1,5 @@
 import { NgZone } from "@angular/core";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 import * as mapTypes from "./google-maps-types";
 import { Polyline } from "./google-maps-types";
 import { PolylineOptions } from "./google-maps-types";

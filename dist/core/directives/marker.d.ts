@@ -95,12 +95,12 @@ export declare class AgmMarker implements OnDestroy, OnChanges, AfterContentInit
     private _observableSubscriptions;
     constructor(_markerManager: MarkerManager);
     ngAfterContentInit(): void;
-    private handleInfoWindowUpdate();
+    private handleInfoWindowUpdate;
     /** @internal */
     ngOnChanges(changes: {
         [key: string]: SimpleChange;
     }): void;
-    private _addEventListeners();
+    private _addEventListeners;
     /** @internal */
     id(): string;
     /** @internal */

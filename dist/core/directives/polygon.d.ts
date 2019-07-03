@@ -173,10 +173,10 @@ export declare class AgmPolygon implements OnDestroy, OnChanges, AfterContentIni
     /** @internal */
     ngAfterContentInit(): void;
     ngOnChanges(changes: SimpleChanges): any;
-    private _init();
-    private _removeEventListeners();
-    private _addEventListeners();
-    private _updatePolygonOptions(changes);
+    private _init;
+    private _removeEventListeners;
+    private _addEventListeners;
+    private _updatePolygonOptions;
     /** @internal */
     id(): string;
     /** @internal */

@@ -1,3 +1,9 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
 import { NgModule } from '@angular/core';
 import { AgmMap } from './directives/map';
 import { AgmCircle } from './directives/circle';
@@ -27,27 +33,27 @@ export function coreDirectives() {
  * The angular-google-maps core module. Contains all Directives/Services/Pipes
  * of the core module. Please use `AgmCoreModule.forRoot()` in your app module.
  */
-var AgmCoreModule = (function () {
+var AgmCoreModule = /** @class */ (function () {
     function AgmCoreModule() {
     }
+    AgmCoreModule_1 = AgmCoreModule;
     /**
      * Please use this method when you register the module at the root level.
      */
     AgmCoreModule.forRoot = function (lazyMapsAPILoaderConfig) {
         return {
-            ngModule: AgmCoreModule,
+            ngModule: AgmCoreModule_1,
             providers: BROWSER_GLOBALS_PROVIDERS.concat([
                 { provide: MapsAPILoader, useClass: LazyMapsAPILoader },
                 { provide: LAZY_MAPS_API_CONFIG, useValue: lazyMapsAPILoaderConfig }
             ]),
         };
     };
+    var AgmCoreModule_1;
+    AgmCoreModule = AgmCoreModule_1 = __decorate([
+        NgModule({ declarations: coreDirectives(), exports: coreDirectives() })
+    ], AgmCoreModule);
     return AgmCoreModule;
 }());
 export { AgmCoreModule };
-AgmCoreModule.decorators = [
-    { type: NgModule, args: [{ declarations: coreDirectives(), exports: coreDirectives() },] },
-];
-/** @nocollapse */
-AgmCoreModule.ctorParameters = function () { return []; };
 //# sourceMappingURL=core.module.js.map

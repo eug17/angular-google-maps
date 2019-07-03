@@ -4,7 +4,7 @@ import { MapsAPILoader } from './maps-api-loader';
 export declare enum GoogleMapsScriptProtocol {
     HTTP = 1,
     HTTPS = 2,
-    AUTO = 3,
+    AUTO = 3
 }
 /**
  * Token for the config of the LazyMapsAPILoader. Please provide an object of type {@link
@@ -72,5 +72,5 @@ export declare class LazyMapsAPILoader extends MapsAPILoader {
     constructor(config: any, w: WindowRef, d: DocumentRef);
     load(): Promise<void>;
     getLibraries(): string[];
-    private _getScriptSrc(callbackName);
+    private _getScriptSrc;
 }

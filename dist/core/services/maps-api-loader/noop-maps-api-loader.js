@@ -5,7 +5,7 @@ import { InjectionToken } from '@angular/core';
  * It's important that the Google Maps API script gets loaded first on the page.
  */
 export var LAZY_MAPS_API_CONFIG = new InjectionToken('angular-google-maps LAZY_MAPS_API_CONFIG');
-var NoOpMapsAPILoader = (function () {
+var NoOpMapsAPILoader = /** @class */ (function () {
     function NoOpMapsAPILoader() {
     }
     NoOpMapsAPILoader.prototype.load = function () {

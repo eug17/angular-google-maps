@@ -1,6 +1,15 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 import { Directive, EventEmitter, Input, Output } from '@angular/core';
 import { CircleManager } from '../services/managers/circle-manager';
-var AgmCircle = (function () {
+var AgmCircle = /** @class */ (function () {
     function AgmCircle(_manager) {
         this._manager = _manager;
         /**
@@ -89,6 +98,7 @@ var AgmCircle = (function () {
         this._circleAddedToManager = false;
         this._eventSubscriptions = [];
     }
+    AgmCircle_1 = AgmCircle;
     /** @internal */
     AgmCircle.prototype.ngOnInit = function () {
         this._manager.addCircle(this);
@@ -119,7 +129,7 @@ var AgmCircle = (function () {
     };
     AgmCircle.prototype._updateCircleOptionsChanges = function (changes) {
         var options = {};
-        var optionKeys = Object.keys(changes).filter(function (k) { return AgmCircle._mapOptions.indexOf(k) !== -1; });
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmCircle_1._mapOptions.indexOf(k) !== -1; });
         optionKeys.forEach(function (k) { options[k] = changes[k].currentValue; });
         if (optionKeys.length > 0) {
             this._manager.setOptions(this, options);
@@ -169,49 +179,126 @@ var AgmCircle = (function () {
      */
     AgmCircle.prototype.getBounds = function () { return this._manager.getBounds(this); };
     AgmCircle.prototype.getCenter = function () { return this._manager.getCenter(this); };
+    var AgmCircle_1;
+    AgmCircle._mapOptions = [
+        'fillColor', 'fillOpacity', 'strokeColor', 'strokeOpacity', 'strokePosition', 'strokeWeight',
+        'visible', 'zIndex'
+    ];
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmCircle.prototype, "latitude", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmCircle.prototype, "longitude", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmCircle.prototype, "clickable", void 0);
+    __decorate([
+        Input('circleDraggable'),
+        __metadata("design:type", Boolean)
+    ], AgmCircle.prototype, "draggable", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmCircle.prototype, "editable", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmCircle.prototype, "fillColor", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmCircle.prototype, "fillOpacity", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmCircle.prototype, "radius", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmCircle.prototype, "strokeColor", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmCircle.prototype, "strokeOpacity", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmCircle.prototype, "strokePosition", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmCircle.prototype, "strokeWeight", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmCircle.prototype, "visible", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmCircle.prototype, "zIndex", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "centerChange", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "circleClick", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "circleDblClick", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "drag", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "dragEnd", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "dragStart", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "mouseDown", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "mouseMove", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "mouseOut", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "mouseOver", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "mouseUp", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "radiusChange", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmCircle.prototype, "rightClick", void 0);
+    AgmCircle = AgmCircle_1 = __decorate([
+        Directive({
+            selector: 'agm-circle'
+        }),
+        __metadata("design:paramtypes", [CircleManager])
+    ], AgmCircle);
     return AgmCircle;
 }());
 export { AgmCircle };
-AgmCircle._mapOptions = [
-    'fillColor', 'fillOpacity', 'strokeColor', 'strokeOpacity', 'strokePosition', 'strokeWeight',
-    'visible', 'zIndex'
-];
-AgmCircle.decorators = [
-    { type: Directive, args: [{
-                selector: 'agm-circle'
-            },] },
-];
-/** @nocollapse */
-AgmCircle.ctorParameters = function () { return [
-    { type: CircleManager, },
-]; };
-AgmCircle.propDecorators = {
-    'latitude': [{ type: Input },],
-    'longitude': [{ type: Input },],
-    'clickable': [{ type: Input },],
-    'draggable': [{ type: Input, args: ['circleDraggable',] },],
-    'editable': [{ type: Input },],
-    'fillColor': [{ type: Input },],
-    'fillOpacity': [{ type: Input },],
-    'radius': [{ type: Input },],
-    'strokeColor': [{ type: Input },],
-    'strokeOpacity': [{ type: Input },],
-    'strokePosition': [{ type: Input },],
-    'strokeWeight': [{ type: Input },],
-    'visible': [{ type: Input },],
-    'zIndex': [{ type: Input },],
-    'centerChange': [{ type: Output },],
-    'circleClick': [{ type: Output },],
-    'circleDblClick': [{ type: Output },],
-    'drag': [{ type: Output },],
-    'dragEnd': [{ type: Output },],
-    'dragStart': [{ type: Output },],
-    'mouseDown': [{ type: Output },],
-    'mouseMove': [{ type: Output },],
-    'mouseOut': [{ type: Output },],
-    'mouseOver': [{ type: Output },],
-    'mouseUp': [{ type: Output },],
-    'radiusChange': [{ type: Output },],
-    'rightClick': [{ type: Output },],
-};
 //# sourceMappingURL=circle.js.map

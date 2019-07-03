@@ -128,8 +128,8 @@ export declare class AgmPolyline implements OnDestroy, OnChanges, AfterContentIn
     /** @internal */
     ngAfterContentInit(): void;
     ngOnChanges(changes: SimpleChanges): any;
-    private _init();
-    private _addEventListeners();
+    private _init;
+    private _addEventListeners;
     /** @internal */
     _getPoints(): Array<AgmPolylinePoint>;
     /** @internal */

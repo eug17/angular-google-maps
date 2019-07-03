@@ -386,7 +386,7 @@ export declare enum ControlPosition {
     RIGHT_TOP = 8,
     TOP_CENTER = 9,
     TOP_LEFT = 10,
-    TOP_RIGHT = 11,
+    TOP_RIGHT = 11
 }
 export declare enum MapTypeId {
     /** This map type displays a transparent layer of major streets on satellite images. */
@@ -396,7 +396,7 @@ export declare enum MapTypeId {
     /** This map type displays satellite images. */
     SATELLITE = 2,
     /** This map type displays maps with physical features such as terrain and vegetation. */
-    TERRAIN = 3,
+    TERRAIN = 3
 }
 export interface DrawingModes {
     [index: number]: "marker" | "circle" | "polygon" | "polyline" | "rectangle";
@@ -441,7 +441,7 @@ export interface MapTypeControlOptions {
 export declare enum MapTypeControlStyle {
     DEFAULT = 0,
     DROPDOWN_MENU = 1,
-    HORIZONTAL_BAR = 2,
+    HORIZONTAL_BAR = 2
 }
 export interface OverviewMapControlOptions {
     opened?: boolean;
@@ -468,7 +468,7 @@ export interface ScaleControlOptions {
     style?: ScaleControlStyle;
 }
 export declare enum ScaleControlStyle {
-    DEFAULT = 0,
+    DEFAULT = 0
 }
 /** Options for the rendering of the Street View pegman control on the map. */
 export interface StreetViewControlOptions {
@@ -494,7 +494,7 @@ export interface ZoomControlOptions {
 export declare enum ZoomControlStyle {
     DEFAULT = 0,
     LARGE = 1,
-    SMALL = 2,
+    SMALL = 2
 }
 /** Options for the rendering of the fullscreen control. */
 export interface FullscreenControlOptions {

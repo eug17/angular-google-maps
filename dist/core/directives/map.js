@@ -1,3 +1,12 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 import { Component, ElementRef, EventEmitter, Input, Output } from "@angular/core";
 import { GoogleMapsAPIWrapper } from "../services/google-maps-api-wrapper";
 import { ControlPosition } from "../services/google-maps-types";
@@ -31,7 +40,7 @@ import { DataLayerManager } from "./../services/managers/data-layer-manager";
  * })
  * ```
  */
-var AgmMap = (function () {
+var AgmMap = /** @class */ (function () {
     function AgmMap(_elem, _mapsWrapper, _polygonManager) {
         var _this = this;
         this._elem = _elem;
@@ -225,6 +234,7 @@ var AgmMap = (function () {
             console.log("this.bounds", _this.bounds);
         });
     }
+    AgmMap_1 = AgmMap;
     /** @internal */
     AgmMap.prototype.ngOnInit = function () {
         // todo: this should be solved with a new component and a viewChild decorator
@@ -347,7 +357,7 @@ var AgmMap = (function () {
     AgmMap.prototype._updateMapOptionsChanges = function (changes) {
         // console.log('changes', changes);
         var options = {};
-        var optionKeys = Object.keys(changes).filter(function (k) { return AgmMap._mapOptionsAttributes.indexOf(k) !== -1; });
+        var optionKeys = Object.keys(changes).filter(function (k) { return AgmMap_1._mapOptionsAttributes.indexOf(k) !== -1; });
         optionKeys.forEach(function (k) {
             options[k] = changes[k].currentValue;
         });
@@ -562,122 +572,274 @@ var AgmMap = (function () {
             _this._observableSubscriptions.push(s);
         });
     };
+    var AgmMap_1;
+    /**
+     * Map option attributes that can change over time
+     */
+    AgmMap._mapOptionsAttributes = [
+        "disableDoubleClickZoom",
+        "scrollwheel",
+        "draggable",
+        "draggableCursor",
+        "draggingCursor",
+        "keyboardShortcuts",
+        "zoomControl",
+        "zoomControlOptions",
+        "styles",
+        "streetViewControl",
+        "streetViewControlOptions",
+        "zoom",
+        "mapTypeControl",
+        "mapTypeControlOptions",
+        "minZoom",
+        "maxZoom",
+        "panControl",
+        "panControlOptions",
+        "rotateControl",
+        "rotateControlOptions",
+        "fullscreenControl",
+        "fullscreenControlOptions",
+        "scaleControl",
+        "scaleControlOptions",
+        "mapTypeId",
+        "clickableIcons",
+        "gestureHandling"
+    ];
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmMap.prototype, "longitude", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmMap.prototype, "latitude", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmMap.prototype, "zoom", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmMap.prototype, "tilt", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmMap.prototype, "minZoom", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Number)
+    ], AgmMap.prototype, "maxZoom", void 0);
+    __decorate([
+        Input("mapDraggable"),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "draggable", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "disableDoubleClickZoom", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "disableDefaultUI", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "scrollwheel", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmMap.prototype, "backgroundColor", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmMap.prototype, "draggableCursor", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmMap.prototype, "draggingCursor", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "keyboardShortcuts", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "zoomControl", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "zoomControlOptions", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], AgmMap.prototype, "styles", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "usePanning", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "streetViewControl", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "streetViewControlOptions", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "fitBounds", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], AgmMap.prototype, "fitPoints", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "fitMultiple", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "trafficLayer", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "scaleControl", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "scaleControlOptions", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "mapTypeControl", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "mapCustomControl", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "mapTypeControlOptions", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "panControl", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "panControlOptions", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "rotateControl", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "rotateControlOptions", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "fullscreenControl", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "fullscreenControlOptions", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmMap.prototype, "mapTypeId", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Boolean)
+    ], AgmMap.prototype, "clickableIcons", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmMap.prototype, "gestureHandling", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Object)
+    ], AgmMap.prototype, "drawingModes", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", String)
+    ], AgmMap.prototype, "drawingManagerPosition", void 0);
+    __decorate([
+        Input(),
+        __metadata("design:type", Array)
+    ], AgmMap.prototype, "extraControls", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMap.prototype, "mapClick", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMap.prototype, "mapRightClick", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMap.prototype, "mapDblClick", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMap.prototype, "centerChange", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMap.prototype, "boundsChange", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMap.prototype, "idle", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMap.prototype, "zoomChange", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMap.prototype, "mapReady", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMap.prototype, "polygonComplete", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMap.prototype, "polygonDeleted", void 0);
+    __decorate([
+        Output(),
+        __metadata("design:type", EventEmitter)
+    ], AgmMap.prototype, "extraControlsAction", void 0);
+    AgmMap = AgmMap_1 = __decorate([
+        Component({
+            selector: "agm-map",
+            providers: [
+                GoogleMapsAPIWrapper,
+                MarkerManager,
+                InfoWindowManager,
+                CircleManager,
+                PolylineManager,
+                PolygonManager,
+                KmlLayerManager,
+                DataLayerManager
+            ],
+            host: {
+                // todo: deprecated - we will remove it with the next version
+                "[class.sebm-google-map-container]": "true"
+            },
+            styles: [
+                "\n    .agm-map-container-inner {\n      width: inherit;\n      height: 100%;\n    }\n    .agm-map-content {\n      display:none;\n    }\n  "
+            ],
+            template: "\n    <div class='agm-map-container-inner sebm-google-map-container-inner'></div>\n    <div class='agm-map-content'>\n      <ng-content></ng-content>\n    </div>\n  "
+        }),
+        __metadata("design:paramtypes", [ElementRef,
+            GoogleMapsAPIWrapper,
+            PolygonManager])
+    ], AgmMap);
     return AgmMap;
 }());
 export { AgmMap };
-/**
- * Map option attributes that can change over time
- */
-AgmMap._mapOptionsAttributes = [
-    "disableDoubleClickZoom",
-    "scrollwheel",
-    "draggable",
-    "draggableCursor",
-    "draggingCursor",
-    "keyboardShortcuts",
-    "zoomControl",
-    "zoomControlOptions",
-    "styles",
-    "streetViewControl",
-    "streetViewControlOptions",
-    "zoom",
-    "mapTypeControl",
-    "mapTypeControlOptions",
-    "minZoom",
-    "maxZoom",
-    "panControl",
-    "panControlOptions",
-    "rotateControl",
-    "rotateControlOptions",
-    "fullscreenControl",
-    "fullscreenControlOptions",
-    "scaleControl",
-    "scaleControlOptions",
-    "mapTypeId",
-    "clickableIcons",
-    "gestureHandling"
-];
-AgmMap.decorators = [
-    { type: Component, args: [{
-                selector: "agm-map",
-                providers: [
-                    GoogleMapsAPIWrapper,
-                    MarkerManager,
-                    InfoWindowManager,
-                    CircleManager,
-                    PolylineManager,
-                    PolygonManager,
-                    KmlLayerManager,
-                    DataLayerManager
-                ],
-                host: {
-                    // todo: deprecated - we will remove it with the next version
-                    "[class.sebm-google-map-container]": "true"
-                },
-                styles: [
-                    "\n    .agm-map-container-inner {\n      width: inherit;\n      height: 100%;\n    }\n    .agm-map-content {\n      display:none;\n    }\n  "
-                ],
-                template: "\n    <div class='agm-map-container-inner sebm-google-map-container-inner'></div>\n    <div class='agm-map-content'>\n      <ng-content></ng-content>\n    </div>\n  "
-            },] },
-];
-/** @nocollapse */
-AgmMap.ctorParameters = function () { return [
-    { type: ElementRef, },
-    { type: GoogleMapsAPIWrapper, },
-    { type: PolygonManager, },
-]; };
-AgmMap.propDecorators = {
-    'longitude': [{ type: Input },],
-    'latitude': [{ type: Input },],
-    'zoom': [{ type: Input },],
-    'tilt': [{ type: Input },],
-    'minZoom': [{ type: Input },],
-    'maxZoom': [{ type: Input },],
-    'draggable': [{ type: Input, args: ["mapDraggable",] },],
-    'disableDoubleClickZoom': [{ type: Input },],
-    'disableDefaultUI': [{ type: Input },],
-    'scrollwheel': [{ type: Input },],
-    'backgroundColor': [{ type: Input },],
-    'draggableCursor': [{ type: Input },],
-    'draggingCursor': [{ type: Input },],
-    'keyboardShortcuts': [{ type: Input },],
-    'zoomControl': [{ type: Input },],
-    'zoomControlOptions': [{ type: Input },],
-    'styles': [{ type: Input },],
-    'usePanning': [{ type: Input },],
-    'streetViewControl': [{ type: Input },],
-    'streetViewControlOptions': [{ type: Input },],
-    'fitBounds': [{ type: Input },],
-    'fitPoints': [{ type: Input },],
-    'fitMultiple': [{ type: Input },],
-    'trafficLayer': [{ type: Input },],
-    'scaleControl': [{ type: Input },],
-    'scaleControlOptions': [{ type: Input },],
-    'mapTypeControl': [{ type: Input },],
-    'mapCustomControl': [{ type: Input },],
-    'mapTypeControlOptions': [{ type: Input },],
-    'panControl': [{ type: Input },],
-    'panControlOptions': [{ type: Input },],
-    'rotateControl': [{ type: Input },],
-    'rotateControlOptions': [{ type: Input },],
-    'fullscreenControl': [{ type: Input },],
-    'fullscreenControlOptions': [{ type: Input },],
-    'mapTypeId': [{ type: Input },],
-    'clickableIcons': [{ type: Input },],
-    'gestureHandling': [{ type: Input },],
-    'drawingModes': [{ type: Input },],
-    'drawingManagerPosition': [{ type: Input },],
-    'extraControls': [{ type: Input },],
-    'mapClick': [{ type: Output },],
-    'mapRightClick': [{ type: Output },],
-    'mapDblClick': [{ type: Output },],
-    'centerChange': [{ type: Output },],
-    'boundsChange': [{ type: Output },],
-    'idle': [{ type: Output },],
-    'zoomChange': [{ type: Output },],
-    'mapReady': [{ type: Output },],
-    'polygonComplete': [{ type: Output },],
-    'polygonDeleted': [{ type: Output },],
-    'extraControlsAction': [{ type: Output },],
-};
 //# sourceMappingURL=map.js.map

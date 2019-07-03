@@ -1,13 +1,28 @@
 var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
     return function (d, b) {
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { DocumentRef, WindowRef } from '../../utils/browser-globals';
 import { MapsAPILoader } from './maps-api-loader';
@@ -22,7 +37,7 @@ export var GoogleMapsScriptProtocol;
  * LazyMapsAPILoaderConfig}.
  */
 export var LAZY_MAPS_API_CONFIG = new InjectionToken('angular-google-maps LAZY_MAPS_API_CONFIG');
-var LazyMapsAPILoader = (function (_super) {
+var LazyMapsAPILoader = /** @class */ (function (_super) {
     __extends(LazyMapsAPILoader, _super);
     function LazyMapsAPILoader(config, w, d) {
         var _this = _super.call(this) || this;
@@ -110,16 +125,12 @@ var LazyMapsAPILoader = (function (_super) {
             .join('&');
         return protocol + "//" + hostAndPath + "?" + params;
     };
+    LazyMapsAPILoader = __decorate([
+        Injectable(),
+        __param(0, Inject(LAZY_MAPS_API_CONFIG)),
+        __metadata("design:paramtypes", [Object, WindowRef, DocumentRef])
+    ], LazyMapsAPILoader);
     return LazyMapsAPILoader;
 }(MapsAPILoader));
 export { LazyMapsAPILoader };
-LazyMapsAPILoader.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-LazyMapsAPILoader.ctorParameters = function () { return [
-    { type: undefined, decorators: [{ type: Inject, args: [LAZY_MAPS_API_CONFIG,] },] },
-    { type: WindowRef, },
-    { type: DocumentRef, },
-]; };
 //# sourceMappingURL=lazy-maps-api-loader.js.map

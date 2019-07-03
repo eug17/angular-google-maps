@@ -278,27 +278,27 @@ export declare class AgmMap implements OnChanges, OnInit, OnDestroy {
     constructor(_elem: ElementRef, _mapsWrapper: GoogleMapsAPIWrapper, _polygonManager: PolygonManager);
     /** @internal */
     ngOnInit(): void;
-    private _initMapInstance(el);
+    private _initMapInstance;
     /** @internal */
     ngOnDestroy(): void;
     ngOnChanges(changes: SimpleChanges): void;
-    private _updateMapExtraControlls(_controls);
-    private _updateMapOptionsChanges(changes);
+    private _updateMapExtraControlls;
+    private _updateMapOptionsChanges;
     /**
      * Triggers a resize event on the google map instance.
      * When recenter is true, the of the google map gets called with the current lat/lng values or fitBounds value to recenter the map.
      * Returns a promise that gets resolved after the event was triggered.
      */
     triggerResize(recenter?: boolean): Promise<void>;
-    private _updatePosition(changes);
-    private _drawingManagerRemovePolygonListeners();
-    private _setDrawingManager();
-    private _setCenter();
-    private _fitPoints();
-    private _fitBounds();
-    private _handleMapCenterChange();
-    private _handleBoundsChange();
-    private _handleMapZoomChange();
-    private _handleIdleEvent();
-    private _handleMapMouseEvents();
+    private _updatePosition;
+    private _drawingManagerRemovePolygonListeners;
+    private _setDrawingManager;
+    private _setCenter;
+    private _fitPoints;
+    private _fitBounds;
+    private _handleMapCenterChange;
+    private _handleBoundsChange;
+    private _handleMapZoomChange;
+    private _handleIdleEvent;
+    private _handleMapMouseEvents;
 }

@@ -1,10 +1,19 @@
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
 import { Injectable, NgZone } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { GoogleMapsAPIWrapper } from './../google-maps-api-wrapper';
 /**
  * Manages all Data Layers for a Google Map instance.
  */
-var DataLayerManager = (function () {
+var DataLayerManager = /** @class */ (function () {
     function DataLayerManager(_wrapper, _zone) {
         this._wrapper = _wrapper;
         this._zone = _zone;
@@ -64,15 +73,11 @@ var DataLayerManager = (function () {
             });
         });
     };
+    DataLayerManager = __decorate([
+        Injectable(),
+        __metadata("design:paramtypes", [GoogleMapsAPIWrapper, NgZone])
+    ], DataLayerManager);
     return DataLayerManager;
 }());
 export { DataLayerManager };
-DataLayerManager.decorators = [
-    { type: Injectable },
-];
-/** @nocollapse */
-DataLayerManager.ctorParameters = function () { return [
-    { type: GoogleMapsAPIWrapper, },
-    { type: NgZone, },
-]; };
 //# sourceMappingURL=data-layer-manager.js.map

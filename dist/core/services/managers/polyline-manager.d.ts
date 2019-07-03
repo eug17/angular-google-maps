@@ -1,5 +1,5 @@
 import { NgZone } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { AgmPolyline } from '../../directives/polyline';
 import { GoogleMapsAPIWrapper } from '../google-maps-api-wrapper';
 export declare class PolylineManager {
@@ -7,7 +7,7 @@ export declare class PolylineManager {
     private _zone;
     private _polylines;
     constructor(_mapsWrapper: GoogleMapsAPIWrapper, _zone: NgZone);
-    private static _convertPoints(line);
+    private static _convertPoints;
     addPolyline(line: AgmPolyline): void;
     updatePolylinePoints(line: AgmPolyline): Promise<void>;
     setPolylineOptions(line: AgmPolyline, options: {
