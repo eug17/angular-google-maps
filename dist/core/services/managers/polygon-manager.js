@@ -49,7 +49,7 @@ var PolygonManager = /** @class */ (function () {
         var _this = this;
         return this._polygons.get(path).then(function (l) {
             l.setOptions(options);
-            if (options['paths']) {
+            if (options["paths"]) {
                 _this.updatePolygon(path);
             }
         });
@@ -74,8 +74,8 @@ var PolygonManager = /** @class */ (function () {
         var _this = this;
         return Observable.create(function (observer) {
             _this._polygons.get(path).then(function (l) {
-                l.addListener(eventName, function (e) {
-                    return _this._zone.run(function () { return observer.next(e); });
+                l.addListener(eventName, function () {
+                    return _this._zone.run(function () { return observer.next(_this.getBounds(l)); });
                 });
             });
         });
